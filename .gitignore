@@ -6,6 +6,7 @@ credentials.json
 libpeerconnection.log
 npm-debug.log
 
+db
 
 app/www
 app/src/lib
