@@ -5,8 +5,12 @@ machine:
 
 dependencies:
   override:
-    - make bootstrap
+    - (cd app && npm install)
+    - (cd app && ./node_modules/bower/bin/bower install --allow-root --no-interactive)
+    - (cd app && make i_html5_notifications)
+    - (cd app && make build)
     - (cd app && make i_web_driver)
+    - (cd api && npm install)
 
 test:
   override:
