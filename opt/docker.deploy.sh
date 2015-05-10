@@ -3,10 +3,10 @@
 docker pull christianfei/pomodoro:latest
 docker pull christianfei/pomodoro-api:latest
 
-docker rm -f $(docker ps -a | grep 'pomodoro-api\s*$' | awk '{print $1}')
-docker rm -f $(docker ps -a | grep 'pomodoro-api-1\s*$' | awk '{print $1}')
-docker rm -f $(docker ps -a | grep 'pomodoro-api-2\s*$' | awk '{print $1}')
-docker rm -f $(docker ps -a | grep 'pomodoro\s*$' | awk '{print $1}')
+docker rm -f "$(docker ps -a | grep 'pomodoro-api\s*$' | awk '{print $1}')"
+docker rm -f "$(docker ps -a | grep 'pomodoro-api-1\s*$' | awk '{print $1}')"
+docker rm -f "$(docker ps -a | grep 'pomodoro-api-2\s*$' | awk '{print $1}')"
+docker rm -f "$(docker ps -a | grep 'pomodoro\s*$' | awk '{print $1}')"
 
 docker run --name pomodoro-api-sessions \
   --restart=always \
