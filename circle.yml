@@ -9,25 +9,19 @@ dependencies:
     - "app/src/lib"
     - "api/node_modules"
   override:
-    - cd app
-    - npm install
-    - ./node_modules/bower/bin/bower install --allow-root --no-interactive
-    - make i_html5_notifications
-    - make build
-    - make i_web_driver
-    - cd ../api
-    - npm install
-    - cd ..
+    - (cd app && npm install)
+    - (cd app && ./node_modules/bower/bin/bower install --allow-root --no-interactive)
+    - (cd app && make i_html5_notifications)
+    - (cd app && make build)
+    - (cd app && make i_web_driver)
+    - (cd api && npm install)
 
 test:
   override:
     - cp credentials.template.json credentials.json
-    - cd api
-    - NODE_ENV=test npm test
-    - cd app
-    - npm test
-    - npm run e2e-test
-    - cd ..
+    - (cd api && NODE_ENV=test npm test)
+    - (cd app && npm test)
+    - (cd app && npm run e2e-test)
 
 deployment:
   production:
