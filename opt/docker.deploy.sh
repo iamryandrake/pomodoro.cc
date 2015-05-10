@@ -23,7 +23,7 @@ docker run --name pomodoro-api-db \
 docker run --name pomodoro-api-1 \
   --restart=always \
   -d \
-  -v /home/pigeon/apps/pomodoro.cc/api/credentials.json:/credentials.json \
+  -v /home/pigeon/apps/pomodoro.cc/credentials.json:/credentials.json \
   --link pomodoro-api-sessions:pomodoro-api-sessions \
   --link pomodoro-api-db:pomodoro-api-db \
   christianfei/pomodoro-api
@@ -31,7 +31,7 @@ docker run --name pomodoro-api-1 \
 docker run --name pomodoro-api-2 \
   --restart=always \
   -d \
-  -v /home/pigeon/apps/pomodoro.cc/api/credentials.json:/credentials.json \
+  -v /home/pigeon/apps/pomodoro.cc/credentials.json:/credentials.json \
   --link pomodoro-api-sessions:pomodoro-api-sessions \
   --link pomodoro-api-db:pomodoro-api-db \
   christianfei/pomodoro-api
