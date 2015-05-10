@@ -9,16 +9,19 @@ docker rm -f "$(docker ps -a | grep 'pomodoro-api-2\s*$' | awk '{print $1}')"
 docker rm -f "$(docker ps -a | grep 'pomodoro\s*$' | awk '{print $1}')"
 
 docker run --name pomodoro-api-sessions \
+  --restart=always \
   -d \
   redis:latest \
   redis-server
 
 docker run --name pomodoro-api-db \
+  --restart=always \
   -d \
   -v /home/pigeon/apps/pomodoro-api/db:/data/db \
   dockerfile/mongodb
 
 docker run --name pomodoro-api-1 \
+  --restart=always \
   -d \
   -v /home/pigeon/apps/pomodoro.cc/credentials.json:/credentials.json \
   --link pomodoro-api-sessions:pomodoro-api-sessions \
@@ -26,6 +29,7 @@ docker run --name pomodoro-api-1 \
   christianfei/pomodoro-api
 
 docker run --name pomodoro-api-2 \
+  --restart=always \
   -d \
   -v /home/pigeon/apps/pomodoro.cc/credentials.json:/credentials.json \
   --link pomodoro-api-sessions:pomodoro-api-sessions \
@@ -33,6 +37,7 @@ docker run --name pomodoro-api-2 \
   christianfei/pomodoro-api
 
 docker run --name pomodoro \
+  --restart=always \
   -d \
   -p 80:80 \
   -p 443:443 \
