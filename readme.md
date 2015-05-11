@@ -1,4 +1,4 @@
-pomodoro garden
+pomodoro.cc
 
 ==============
 
