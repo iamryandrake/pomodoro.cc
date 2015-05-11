@@ -54,3 +54,6 @@ From the `app` folder:
 
 - run the end-to-end tests with `make i_web_driver` (once) and `npm run e2e-test`
 
+#### Api
+
+You can run the tests with: ...
