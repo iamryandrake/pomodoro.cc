@@ -17,6 +17,9 @@ With the help of insightful statistics you'll be able to better understand how m
 
 ## Vagrant
 
+Setup a `credentials.json` starting from `credentials.template.json` and fill in your information.
+You'll need to create an app for github and twitter. (If you don't want to provide them, it's fine, authentication won't work, but you need at least to create this file)
+
 Add an entry in your `/etc/hosts`:
 
 ```
