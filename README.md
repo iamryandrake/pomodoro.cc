@@ -17,8 +17,12 @@ With the help of insightful statistics you'll be able to better understand how m
 
 ## Vagrant
 
+###### Important
+
 Setup a `credentials.json` starting from `credentials.template.json` and fill in your information.
 You'll need to create an app for github and twitter. (If you don't want to provide them, it's fine, authentication won't work, but you need at least to create this file)
+
+-----
 
 Add an entry in your `/etc/hosts`:
 
@@ -38,11 +42,12 @@ vagrant up
 
 The vagrant box keep the following docker containers up and running:
 
-- `pomodoro`: the frontend with nginx and angular
-- `pomodoro-api`: the api with node, redis, and mongodb
+- `pomodoro`: nginx container that serves the static assets and proxies requests to the api container
+- `pomodoro-api`: node container that represents the api
+- `redis`: for the sessions shared between the two instances of `pomodoro-api`
+- `mongo`: db for the `pomodoro-api` to save pomodori of registered users
 
-Note: `pomodoro` proxies the requests that match the api to the api container
-
+To rebuild the infrastructure run the script `sh /vagrant/opt/docker.dev.sh`
 
 #### App
 
