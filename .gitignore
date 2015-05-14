@@ -12,3 +12,4 @@ app/www
 app/src/lib
 app/test/lib
 .DS_Store
+pomodoro.cc.sublime-workspace
