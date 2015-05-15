@@ -18,6 +18,7 @@ stop_container(){
 stop_container 'pomodoro-api'
 stop_container 'pomodoro-api-1'
 stop_container 'pomodoro-api-2'
+stop_container 'pomodoro-socket-io'
 stop_container 'pomodoro'
 
 echo "\n --> building pomodoro"
@@ -25,6 +26,9 @@ docker build -t christianfei/pomodoro /vagrant/app
 
 echo "\n --> building pomodoro-api"
 docker build -t christianfei/pomodoro-api /vagrant/api
+
+echo "\n --> building pomodoro-socket-io"
+docker build -t christianfei/pomodoro-socket-io /vagrant/socket-io
 
 if [ -z "$(id_for_container 'pomodoro-api-sessions')" ]; then
     echo "\n ===> starting 'pomodoro-api-sessions'"
@@ -72,6 +76,12 @@ docker run --name pomodoro-api-2 \
     --link pomodoro-api-db:pomodoro-api-db \
     christianfei/pomodoro-api
 
+echo "\n ===> starting 'pomodoro-socket-io'"
+docker run --name pomodoro-socket-io \
+    --restart=always \
+    -d \
+    christianfei/pomodoro-socket-io
+
 echo "\n ===> starting 'pomodoro'"
 docker run --name pomodoro \
     --restart=always \
@@ -81,4 +91,5 @@ docker run --name pomodoro \
     -v /vagrant/app/www:/var/www/pomodoro.cc \
     --link pomodoro-api-1:pomodoro-api-1 \
     --link pomodoro-api-2:pomodoro-api-2 \
+    --link pomodoro-socket-io:pomodoro-socket-io \
     christianfei/pomodoro
