@@ -64,5 +64,5 @@ From the `app` folder:
 You can run the tests with: (inside vagrant)
 
 ```
-docker run -it --link=pomodoro-api-db-test:pomodoro-api-db christianfei/pomodoro-api npm test
+docker run -it --link=pomodoro-api-db-test:pomodoro-api-db christianfei/pomodoro-api sh -c 'npm install && npm test'
 ```
