@@ -1,8 +1,8 @@
 #!/bin/bash
 
-docker build -t christianfei/pomodoro-api api
-docker build -t christianfei/pomodoro-socket-io socket-io
-docker build -t christianfei/pomodoro app
+docker build -t christianfei/pomodoro-api /pomodoro.cc/api
+docker build -t christianfei/pomodoro-socket-io /pomodoro.cc/socket-io
+docker build -t christianfei/pomodoro /pomodoro.cc/app
 # docker pull christianfei/pomodoro:latest
 # docker pull christianfei/pomodoro-api:latest
 # docker pull christianfei/pomodoro-socket-io:latest
