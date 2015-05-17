@@ -1,8 +1,11 @@
 #!/bin/bash
 
-docker pull christianfei/pomodoro:latest
-docker pull christianfei/pomodoro-api:latest
-docker pull christianfei/pomodoro-socket-io:latest
+docker build -t christianfei/pomodoro-api api
+docker build -t christianfei/pomodoro-socket-io socket-io
+docker build -t christianfei/pomodoro app
+# docker pull christianfei/pomodoro:latest
+# docker pull christianfei/pomodoro-api:latest
+# docker pull christianfei/pomodoro-socket-io:latest
 
 docker rm -f "$(docker ps -a | grep 'pomodoro-api\s*$' | awk '{print $1}')"
 docker rm -f "$(docker ps -a | grep 'pomodoro-api-1\s*$' | awk '{print $1}')"

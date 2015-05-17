@@ -27,13 +27,13 @@ deployment:
   production:
     branch: master
     commands:
-      - (cd app && make production)
-      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - docker build -t christianfei/pomodoro-api api
-      - docker push christianfei/pomodoro-api
-      - docker build -t christianfei/pomodoro-socket-io socket-io
-      - docker push christianfei/pomodoro-socket-io
-      - docker build -t christianfei/pomodoro app
-      - docker push christianfei/pomodoro
+      # - (cd app && make production)
+      # - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      # - docker build -t christianfei/pomodoro-api api
+      # - docker push christianfei/pomodoro-api
+      # - docker build -t christianfei/pomodoro-socket-io socket-io
+      # - docker push christianfei/pomodoro-socket-io
+      # - docker build -t christianfei/pomodoro app
+      # - docker push christianfei/pomodoro
       - ssh -v pigeon@146.185.167.197 'cd /pomodoro.cc && git pull origin master'
       - ssh -v pigeon@146.185.167.197 'sh /pomodoro.cc/opt/docker.deploy.sh'
