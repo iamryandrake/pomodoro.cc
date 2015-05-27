@@ -10,7 +10,7 @@ pomodoro.cc
 
 It takes advantage of the guidelines described in the [Pomodoro-technique](http://pomodorotechnique.com) to work more effectively with frequent, mind refreshing breaks.
 
-With the help of insightful statistics you'll be able to better understand how much you worked on each task and how concentrated you were.
+With the help of insightful statistics, you'll be able to better understand how much you worked on each task and how concentrated you were.
 
 -----
 
