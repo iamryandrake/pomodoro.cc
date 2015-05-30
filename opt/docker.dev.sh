@@ -19,10 +19,16 @@ stop_container 'pomodoro-api'
 stop_container 'pomodoro-api-1'
 stop_container 'pomodoro-api-2'
 stop_container 'pomodoro-socket-io'
-stop_container 'pomodoro'
+stop_container 'pomodoro-app'
+stop_container 'pomodoro-app-beta'
+stop_container 'pomodoro-main'
 
-echo "\n --> building pomodoro"
-docker build -t christianfei/pomodoro /vagrant/app
+
+echo "\n --> building pomodoro-app"
+docker build -t christianfei/pomodoro-app /vagrant/app
+
+echo "\n --> building pomodoro-app-beta"
+docker build -t christianfei/pomodoro-app-beta /vagrant/app-beta
 
 echo "\n --> building pomodoro-api"
 docker build -t christianfei/pomodoro-api /vagrant/api
@@ -83,13 +89,29 @@ docker run --name pomodoro-socket-io \
     christianfei/pomodoro-socket-io
 
 echo "\n ===> starting 'pomodoro'"
-docker run --name pomodoro \
+docker run --name pomodoro-app \
     --restart=always \
     -d \
-    -p 80:80 \
     -v /vagrant/app/etc/nginx/nginx.conf:/etc/nginx/nginx.conf \
     -v /vagrant/app/www:/var/www/pomodoro.cc \
     --link pomodoro-api-1:pomodoro-api-1 \
     --link pomodoro-api-2:pomodoro-api-2 \
     --link pomodoro-socket-io:pomodoro-socket-io \
-    christianfei/pomodoro
+    christianfei/pomodoro-app
+
+echo "\n ===> starting 'pomodoro-app-beta'"
+docker run --name pomodoro-app-beta \
+    --restart=always \
+    -d \
+    -v /vagrant/app-beta/www:/var/www/pomodoro.cc \
+    christianfei/pomodoro-app-beta
+
+echo "\n ===> starting 'pomodoro-main'"
+docker run --name pomodoro-main \
+    --restart=always \
+    -d \
+    -p 80:80 \
+    -v /vagrant/main/etc/nginx/nginx.conf:/etc/nginx/nginx.conf \
+    --link pomodoro-app:pomodoro-app \
+    --link pomodoro-app-beta:pomodoro-app-beta \
+    nginx:1.9.1
