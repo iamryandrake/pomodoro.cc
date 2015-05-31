@@ -54,4 +54,5 @@ docker run --name pomodoro-app \
   --link pomodoro-api-2:pomodoro-api-2 \
   --link pomodoro-socket-io:pomodoro-socket-io \
   -v /pomodoro.cc/ssl:/etc/nginx/ssl/pomodoro.cc \
+  -v /pomodoro.cc/app/www:/var/www/pomodoro.cc/ \
   christianfei/pomodoro-app
