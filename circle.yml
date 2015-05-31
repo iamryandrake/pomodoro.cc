@@ -36,5 +36,5 @@ deployment:
       - docker push christianfei/pomodoro-app
       - docker build -t christianfei/pomodoro-app-beta app-beta
       - docker push christianfei/pomodoro-app-beta
-      - ssh pigeon@146.185.167.197 'cd /pomodoro.cc && git pull origin master'
-      - ssh pigeon@146.185.167.197 'sh /pomodoro.cc/opt/docker.deploy.sh'
+      - ssh -v pigeon@146.185.167.197 'cd /pomodoro.cc && git pull origin master'
+      - ssh -v pigeon@146.185.167.197 'sh /pomodoro.cc/opt/docker.deploy.sh'
