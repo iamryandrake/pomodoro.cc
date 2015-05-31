@@ -10,7 +10,6 @@ docker rm -f "$(docker ps -a | grep 'pomodoro-api-1\s*$' | awk '{print $1}')"
 docker rm -f "$(docker ps -a | grep 'pomodoro-api-2\s*$' | awk '{print $1}')"
 docker rm -f "$(docker ps -a | grep 'pomodoro-socket-io\s*$' | awk '{print $1}')"
 docker rm -f "$(docker ps -a | grep 'pomodoro\s*$' | awk '{print $1}')"
-docker rm -f "$(docker ps -a | grep 'pomodoro-main\s*$' | awk '{print $1}')"
 docker rm -f "$(docker ps -a | grep 'pomodoro-app\s*$' | awk '{print $1}')"
 docker rm -f "$(docker ps -a | grep 'pomodoro-app-beta\s*$' | awk '{print $1}')"
 
