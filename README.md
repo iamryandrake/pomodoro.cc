@@ -16,9 +16,32 @@ With the help of insightful statistics, you'll be able to better understand how 
 
 # Setup
 
-## Vagrant
+The vagrant box keep the following docker containers up and running:
 
-###### Important
+- `pomodoro-app`: nginx container that serves the static assets and proxies requests to the api and socket-io container
+- `pomodoro-api`: node container that represents the api
+- `pomodoro-socket-io`: node container that runs a socket.io server
+- `redis`: for the sessions shared between the two instances of `pomodoro-api`
+- `mongo`: db for the `pomodoro-api` to save pomodori of registered users
+
+To rebuild the infrastructure run
+
+- `sh /pomodoro.cc/opt/docker.stop.sh`
+- `sh /pomodoro.cc/opt/docker.build.sh`
+- `sh /pomodoro.cc/opt/docker.run.sh`
+
+##### [SSL certificate](https://devcenter.heroku.com/articles/ssl-certificate-self) and credentials
+
+Generate a self signed certificate and put the generated files under the `ssl` directory
+
+```
+openssl genrsa -des3 -passout pass:x -out pomodoro.cc.pass.key 2048
+openssl rsa -passin pass:x -in pomodoro.cc.pass.key -out pomodoro.cc.key
+openssl req -new -key pomodoro.cc.key -out pomodoro.cc.csr
+openssl x509 -req -days 365 -in pomodoro.cc.csr -signkey pomodoro.cc.key -out bundle.crt
+```
+
+----
 
 Setup a `credentials.json` starting from `credentials.template.json` and fill in your information.
 You'll need to create an app for github and twitter. (If you don't want to provide them, it's fine, authentication won't work, but you need at least to create this file)
@@ -39,18 +62,6 @@ vagrant up
 ```
 
 
-### Development
-
-The vagrant box keep the following docker containers up and running:
-
-- `pomodoro`: nginx container that serves the static assets and proxies requests to the api container
-- `pomodoro-api`: node container that represents the api
-- `pomodoro-socket-io`: node container that runs a socket.io server
-- `redis`: for the sessions shared between the two instances of `pomodoro-api`
-- `mongo`: db for the `pomodoro-api` to save pomodori of registered users
-
-To rebuild the infrastructure run the script `sh /vagrant/opt/docker.dev.sh`
-
 #### App
 
 From the `app` folder:
@@ -68,15 +79,3 @@ You can run the tests with: (inside vagrant)
 ```
 docker run -it --link=pomodoro-api-db-test:pomodoro-api-db christianfei/pomodoro-api sh -c 'npm install && npm test'
 ```
-
-
-##### [SSL certificate](https://devcenter.heroku.com/articles/ssl-certificate-self)
-
-```
-openssl genrsa -des3 -passout pass:x -out pomodoro.cc.pass.key 2048
-openssl rsa -passin pass:x -in pomodoro.cc.pass.key -out pomodoro.cc.key
-openssl req -new -key pomodoro.cc.key -out pomodoro.cc.csr
-openssl x509 -req -days 365 -in pomodoro.cc.csr -signkey pomodoro.cc.key -out bundle.crt
-```
-
-
