@@ -68,6 +68,7 @@ docker run --name pomodoro-main \
     -p 80:80 \
     -p 443:443 \
     -v /pomodoro.cc/main/etc/nginx/nginx.conf:/etc/nginx/nginx.conf \
+    -v /home/pigeon/ssl/pomodoro.cc:/etc/nginx/ssl/pomodoro.cc \
     --link pomodoro-app:pomodoro-app \
     --link pomodoro-app-beta:pomodoro-app-beta \
     nginx:1.9.1
