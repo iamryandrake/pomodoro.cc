@@ -1,0 +1,40 @@
+#!/bin/bash
+
+echo ""
+echo ""
+echo ""
+echo ""
+echo ""
+echo "-->"
+echo "---->"
+echo "------>"
+echo "-------->"
+echo "---------->"
+echo "------------> building pomodoro"
+docker build -t christianfei/pomodoro-app /vagrant/app
+
+echo ""
+echo ""
+echo ""
+echo ""
+echo ""
+echo "-->"
+echo "---->"
+echo "------>"
+echo "-------->"
+echo "---------->"
+echo "------------> building pomodoro-api"
+docker build -t christianfei/pomodoro-api /vagrant/api
+
+echo ""
+echo ""
+echo ""
+echo ""
+echo ""
+echo "-->"
+echo "---->"
+echo "------>"
+echo "-------->"
+echo "---------->"
+echo "------------> building pomodoro-socket-io"
+docker build -t christianfei/pomodoro-socket-io /vagrant/socket-io

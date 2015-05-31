@@ -12,13 +12,16 @@ Vagrant.configure('2') do |config|
   config.vm.network :private_network, ip: "192.168.11.2"
   config.vm.network "forwarded_port", guest: 80, host: 8081
 
-  config.vm.synced_folder "./", "/vagrant", type: "nfs"
+  config.vm.synced_folder "./", "/pomodoro.cc", type: "nfs"
 
   config.vm.provision "docker" do |d|
     d.pull_images "redis"
     d.pull_images "mongo"
   end
 
-  config.vm.provision "shell", run: "always", path: "opt/docker.dev.sh"
+  config.vm.provision "shell", run: "always", path: "opt/docker.build.sh"
+  config.vm.provision "shell", run: "always", path: "opt/docker.run.sh"
 
+  config.vm.provision "shell",
+    inline: "echo 'cd /pomodoro.cc' >> /home/vagrant/.bashrc"
 end

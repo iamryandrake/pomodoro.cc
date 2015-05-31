@@ -68,3 +68,15 @@ You can run the tests with: (inside vagrant)
 ```
 docker run -it --link=pomodoro-api-db-test:pomodoro-api-db christianfei/pomodoro-api sh -c 'npm install && npm test'
 ```
+
+
+##### [SSL certificate](https://devcenter.heroku.com/articles/ssl-certificate-self)
+
+```
+openssl genrsa -des3 -passout pass:x -out pomodoro.cc.pass.key 2048
+openssl rsa -passin pass:x -in pomodoro.cc.pass.key -out pomodoro.cc.key
+openssl req -new -key pomodoro.cc.key -out pomodoro.cc.csr
+openssl x509 -req -days 365 -in pomodoro.cc.csr -signkey pomodoro.cc.key -out bundle.crt
+```
+
+
