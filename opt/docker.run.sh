@@ -21,7 +21,7 @@ if [ -z "$(id_for_container 'pomodoro-api-db')" ]; then
     --restart=always \
     -d \
     -v /pomodoro.cc/db:/data/db \
-    dockerfile/mongodb
+    mongo:latest
 fi
 
 docker run --name pomodoro-api-1 \
