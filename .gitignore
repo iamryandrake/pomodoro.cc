@@ -13,3 +13,6 @@ app/src/lib
 app/test/lib
 .DS_Store
 pomodoro.cc.sublime-workspace
+selenium-debug.log
+selenium.jar
+reports

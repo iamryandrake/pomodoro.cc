@@ -9,24 +9,20 @@ dependencies:
     - "api/node_modules"
   override:
     - (cd app && npm install)
-    - (cd app && ./node_modules/bower/bin/bower install --allow-root --no-interactive)
-    - (cd app && make i_html5_notifications)
-    - (cd app && make build)
-    - (cd app && make i_web_driver)
+    - (cd app && ./node_modules/gulp/bin/gulp.js)
     - (cd api && npm install)
 
 test:
   override:
     - cp credentials.template.json credentials.json
     - (cd api && NODE_ENV=test npm test)
-    - (cd app && npm test)
-    - (cd app && npm run e2e-test)
+    - (cd app && ./node_modules/gulp/bin/gulp.js test)
+    - (cd app && npm run e2e)
 
 deployment:
   production:
     branch: master
     commands:
-      - (cd app && make production)
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker build -t christianfei/pomodoro-api api
       - docker push christianfei/pomodoro-api
