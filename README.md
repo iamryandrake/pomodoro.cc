@@ -26,9 +26,13 @@ The vagrant box keep the following docker containers up and running:
 
 To rebuild the infrastructure run
 
-- `sh /pomodoro.cc/opt/docker.stop.sh`
+- `sh /pomodoro.cc/opt/docker.rm.sh`
 - `sh /pomodoro.cc/opt/docker.build.sh`
 - `sh /pomodoro.cc/opt/docker.run.sh`
+
+or
+
+- `sh opt/docker.rm.sh && sh opt/docker.build.sh && sh opt/docker.run.sh`
 
 ##### [SSL certificate](https://devcenter.heroku.com/articles/ssl-certificate-self) and credentials
 
