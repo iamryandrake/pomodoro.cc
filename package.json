@@ -1,0 +1,24 @@
+{
+  "name": "pomodoro.cc",
+  "version": "1.0.0",
+  "description": "pomodoro.cc ============",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha shared/*.test.js",
+    "test-watch": "./node_modules/mocha/bin/mocha shared/*.test.js --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/christian-fei/pomodoro.cc.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/christian-fei/pomodoro.cc/issues"
+  },
+  "homepage": "https://github.com/christian-fei/pomodoro.cc",
+  "dependencies": {
+    "chai": "^2.3.0",
+    "mocha": "^2.2.5"
+  }
+}
