@@ -12,7 +12,7 @@ function isValid(pomodoro){
 
 function validate(pomodoro){
   var errors = {}
-  if( Object.keys(pomodoro).length === 0 ){
+  if( !pomodoro || Object.keys(pomodoro).length === 0 ){
     errors.minutes = 'required'
     errors.type = 'required'
     errors.startedAt = 'required'

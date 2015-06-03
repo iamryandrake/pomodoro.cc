@@ -3,7 +3,7 @@ var PomodoroValidator = require('./PomodoroValidator')
 
 describe('PomodoroValidator', function () {
   it('validates a Pomodoro', function () {
-    var isValid = PomodoroValidator.isValid({})
+    var isValid = PomodoroValidator.isValid()
     expect( isValid ).to.be.false
   })
   it('returns errors for Pomodoro', function () {
