@@ -21,7 +21,7 @@ describe('PomodoroValidator', function () {
       type: 'this_is_invalid'
     })
     expect(errors).to.deep.equal({
-      type: '"this_is_invalid" is not valid'
+      type: '"this_is_invalid" is not a valid type'
     })
   })
 
