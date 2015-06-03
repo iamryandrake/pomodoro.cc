@@ -9,7 +9,9 @@ describe('PomodoroValidator', function () {
   it('returns errors for Pomodoro', function () {
     var errors = PomodoroValidator.validate({})
     expect(errors).to.deep.equal({
-      type: 'required'
+      minutes: 'required',
+      type: 'required',
+      startedAt: 'required',
     })
   })
 })
