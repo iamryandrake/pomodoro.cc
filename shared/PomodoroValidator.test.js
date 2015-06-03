@@ -21,9 +21,11 @@ describe('PomodoroValidator', function () {
 
   it('returns errors for invalid Pomodoro', function () {
     var errors = PomodoroValidator.validate({
-      type: 'this_is_invalid'
+      type: 'this_is_invalid',
+      minutes: 'this_is_invalid',
     })
     expect(errors.type).to.equal('"this_is_invalid" is not a valid type')
+    expect(errors.minutes).to.equal('"this_is_invalid" are not valid minutes')
   })
 
 })
