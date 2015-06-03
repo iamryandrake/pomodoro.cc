@@ -24,6 +24,9 @@ function validate(pomodoro){
   if( !isValidMinutes(pomodoro) ){
     errors.minutes = '"'+ pomodoro.type +'" are not valid minutes'
   }
+  if( !isValidStartedAt(pomodoro) ){
+    errors.startedAt = '"'+ pomodoro.startedAt +'" is not a valid timestamp'
+  }
   if( !pomodoro.minutes ){
     errors.minutes = 'required'
   }
@@ -42,4 +45,8 @@ function isValidType(pomodoro){
 function isValidMinutes(pomodoro){
   var minutes = parseInt(pomodoro.minutes,10)
   return minutes !== NaN && minutes > 0 && minutes <= 25
+}
+function isValidStartedAt(pomodoro){
+  var startedAt = parseInt(pomodoro.startedAt,10)
+  return (new Date(startedAt)).getTime() > 0
 }
