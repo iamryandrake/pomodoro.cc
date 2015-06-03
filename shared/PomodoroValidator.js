@@ -19,7 +19,7 @@ function validate(pomodoro){
     return errors
   }
   if( !isValidType(pomodoro) ){
-    errors.type = 'invalid'
+    errors.type = '"'+ pomodoro.type +'" is not valid'
   }
   return errors
 }
