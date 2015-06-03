@@ -9,9 +9,9 @@ id_for_container(){
 stop_container(){
     CONTAINER_ID="$(id_for_container "$1")"
     if [ -n "$CONTAINER_ID" ]; then
-        echo " ===> stopping '$1'"
+        echo "\n\n"
+        echo "----> stopping '$1'"
         docker rm -f $CONTAINER_ID
-        echo ""
     fi
 }
 
