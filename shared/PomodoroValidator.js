@@ -16,6 +16,14 @@ function validate(pomodoro){
     errors.minutes = 'required'
     errors.type = 'required'
     errors.startedAt = 'required'
+    return errors
+  }
+  if( !isValidType(pomodoro) ){
+    errors.type = 'invalid'
   }
   return errors
+}
+
+function isValidType(pomodoro){
+  return /(pomodoro|break)/.test(pomodoro.type)
 }
