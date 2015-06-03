@@ -12,7 +12,7 @@ function isValid(pomodoro){
 
 function validate(pomodoro){
   var errors = {}
-  if( !pomodoro || Object.keys(pomodoro).length === 0 ){
+  if( !pomodoro ){
     errors.minutes = 'required'
     errors.type = 'required'
     errors.startedAt = 'required'
@@ -20,6 +20,15 @@ function validate(pomodoro){
   }
   if( !isValidType(pomodoro) ){
     errors.type = '"'+ pomodoro.type +'" is not a valid type'
+  }
+  if( !pomodoro.minutes ){
+    errors.minutes = 'required'
+  }
+  if( !pomodoro.type ){
+    errors.type = 'required'
+  }
+  if( !pomodoro.startedAt ){
+    errors.startedAt = 'required'
   }
   return errors
 }

@@ -9,20 +9,21 @@ describe('PomodoroValidator', function () {
 
   it('returns errors for empty Pomodoro', function () {
     var errors = PomodoroValidator.validate({})
-    expect(errors).to.deep.equal({
-      minutes: 'required',
-      type: 'required',
-      startedAt: 'required',
-    })
+    expect(errors.minutes).to.equal('required')
+    expect(errors.type).to.equal('required')
+    expect(errors.startedAt).to.equal('required')
+
+    errors = PomodoroValidator.validate({foo:'bar'})
+    expect(errors.minutes).to.equal('required')
+    expect(errors.type).to.equal('required')
+    expect(errors.startedAt).to.equal('required')
   })
 
   it('returns errors for invalid Pomodoro', function () {
     var errors = PomodoroValidator.validate({
       type: 'this_is_invalid'
     })
-    expect(errors).to.deep.equal({
-      type: '"this_is_invalid" is not a valid type'
-    })
+    expect(errors.type).to.equal('"this_is_invalid" is not a valid type')
   })
 
 })
