@@ -37,4 +37,9 @@ describe('PomodoroUtils', function () {
     var expectedHours = {hours: 0, minutes: 25}
     expect( PomodoroUtils.minutesToHours(minutes) ).to.deep.equal( expectedHours )
   })
+  it('refuses to convert invalid minutes', function () {
+    var minutes = -1
+    var expectedHours = {hours: 0, minutes: 0}
+    expect( PomodoroUtils.minutesToHours(minutes) ).to.deep.equal( expectedHours )
+  })
 })
