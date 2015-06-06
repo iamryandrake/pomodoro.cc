@@ -27,13 +27,24 @@ function getDurationInHours(pomodoro){
 }
 
 function minutesToHours(minutes){
+  if( isInteger(minutes) ){
+    return false
+  }
+
+  var convertedHours = 0
+  var convertedMinutes = minutes
+
   return {
-    hours: 0,
-    minutes: minutes
+    hours: convertedHours,
+    minutes: convertedMinutes
   }
 }
 
 function trimDecimals(number,numberOfDecimals){
   var decimals = Math.pow(10,numberOfDecimals)
   return parseInt(number*decimals,10)/decimals
+}
+
+function isInteger(number){
+  return parseInt(number, 10) !== number
 }
