@@ -1,7 +1,8 @@
  module.exports = {
   getDuration: getDuration,
   getDurationInMinutes: getDurationInMinutes,
-  getDurationInHours: getDurationInHours
+  getDurationInHours: getDurationInHours,
+  minutesToHours: minutesToHours
 }
 
 function getDuration(pomodoro){
@@ -25,6 +26,12 @@ function getDurationInHours(pomodoro){
   return trimDecimals(getDurationInMinutes(pomodoro)/60, 1)
 }
 
+function minutesToHours(minutes){
+  return {
+    hours: 0,
+    minutes: minutes
+  }
+}
 
 function trimDecimals(number,numberOfDecimals){
   var decimals = Math.pow(10,numberOfDecimals)

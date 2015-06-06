@@ -32,4 +32,9 @@ describe('PomodoroUtils', function () {
     }
     expect( PomodoroUtils.getDurationInHours(pomodoro) ).to.equal( 0.4 )
   })
+  it('converts minutes to format in hours', function () {
+    var minutes = 25
+    var expectedHours = {hours: 0, minutes: 25}
+    expect( PomodoroUtils.minutesToHours(minutes) ).to.deep.equal( expectedHours )
+  })
 })
