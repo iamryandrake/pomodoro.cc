@@ -34,12 +34,12 @@ describe('PomodoroUtils', function () {
   })
   it('converts minutes to format in hours', function () {
     var minutes = 25
-    var expectedHours = {hours: 0, minutes: 25}
-    expect( PomodoroUtils.minutesToHours(minutes) ).to.deep.equal( expectedHours )
+    var expectedDuration = '00:25'
+    expect( PomodoroUtils.minutesToDuration(minutes) ).to.deep.equal( expectedDuration )
   })
   it('refuses to convert invalid minutes', function () {
     var minutes = -1
-    var expectedHours = {hours: 0, minutes: 0}
-    expect( PomodoroUtils.minutesToHours(minutes) ).to.deep.equal( expectedHours )
+    var expectedHours = '00:00'
+    expect( PomodoroUtils.minutesToDuration(minutes) ).to.deep.equal( expectedHours )
   })
 })

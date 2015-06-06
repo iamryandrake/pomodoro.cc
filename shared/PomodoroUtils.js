@@ -2,7 +2,7 @@
   getDuration: getDuration,
   getDurationInMinutes: getDurationInMinutes,
   getDurationInHours: getDurationInHours,
-  minutesToHours: minutesToHours
+  minutesToDuration: minutesToDuration
 }
 
 function getDuration(pomodoro){
@@ -26,9 +26,9 @@ function getDurationInHours(pomodoro){
   return trimDecimals(getDurationInMinutes(pomodoro)/60, 1)
 }
 
-function minutesToHours(minutes){
+function minutesToDuration(minutes){
   if( minutes < 0 || !isInteger(minutes) ){
-    return {hours: 0,minutes:0}
+    return '00:00'
   }
 
   var convertedHours = 0
@@ -41,10 +41,7 @@ function minutesToHours(minutes){
   }
   convertedMinutes = remainingMinutes
 
-  return {
-    hours: convertedHours,
-    minutes: convertedMinutes
-  }
+  return padToTimeFormat(convertedHours)+':'+padToTimeFormat(convertedMinutes)
 }
 
 function trimDecimals(number,numberOfDecimals){
@@ -54,4 +51,8 @@ function trimDecimals(number,numberOfDecimals){
 
 function isInteger(number){
   return parseInt(number, 10) === number
+}
+
+function padToTimeFormat(number){
+    return (number<10) ? ('0'+number) : (''+number)
 }
