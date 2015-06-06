@@ -1,7 +1,7 @@
 var expect = require('chai').expect
 
 describe('PomodoroUtils', function () {
-  var PomodoroUtils = require('../../src/modules/PomodoroUtils')
+  var PomodoroUtils = require('./PomodoroUtils')
 
   it('calculates the duration of a pomodoro', function () {
     var pomodoro = {
