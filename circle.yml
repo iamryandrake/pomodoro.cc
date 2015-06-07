@@ -23,13 +23,14 @@ deployment:
   production:
     branch: master
     commands:
+      - (cd app && PRODUCTION=true ./node_modules/gulp/bin/gulp.js)
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - docker build -t christianfei/pomodoro-api api
-      - docker push christianfei/pomodoro-api
-      - docker build -t christianfei/pomodoro-socket-io socket-io
-      - docker push christianfei/pomodoro-socket-io
       - docker build -t christianfei/pomodoro-app app
       - docker push christianfei/pomodoro-app
+      # - docker build -t christianfei/pomodoro-api api
+      # - docker push christianfei/pomodoro-api
+      # - docker build -t christianfei/pomodoro-socket-io socket-io
+      # - docker push christianfei/pomodoro-socket-io
       - ssh pigeon@146.185.167.197 'cd /pomodoro.cc && git pull origin master'
       - ssh pigeon@146.185.167.197 'sh /pomodoro.cc/opt/docker.pull.sh'
       - ssh pigeon@146.185.167.197 'sh /pomodoro.cc/opt/docker.rm.sh'
