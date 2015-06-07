@@ -19,6 +19,7 @@
   "homepage": "https://github.com/christian-fei/pomodoro.cc",
   "dependencies": {
     "chai": "^2.3.0",
-    "mocha": "^2.2.5"
+    "mocha": "^2.2.5",
+    "moment": "^2.10.3"
   }
 }

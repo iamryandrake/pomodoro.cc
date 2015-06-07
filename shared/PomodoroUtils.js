@@ -1,4 +1,5 @@
- module.exports = {
+var moment = require('moment')
+module.exports = {
   getDuration: getDuration,
   getDurationInMinutes: getDurationInMinutes,
   getDurationInHours: getDurationInHours,
@@ -13,7 +14,9 @@ function getDuration(pomodoro){
     return pomodoro.minutes * 60
   }
   if( pomodoro.cancelledAt ) {
-    return parseInt((pomodoro.cancelledAt - pomodoro.startedAt)/1000, 10)
+    var cancelledAt = moment(pomodoro.cancelledAt).unix()
+    var startedAt = moment(pomodoro.startedAt).unix()
+    return parseInt(cancelledAt - startedAt, 10)
   }
   return 0
 }
