@@ -24,11 +24,11 @@ The vagrant box keep the following docker containers up and running:
 - `redis`: for the sessions shared between the two instances of `pomodoro-api`
 - `mongo`: db for the `pomodoro-api` to save pomodori of registered users
 
-To rebuild the infrastructure run
+To rebuild the infrastructure run (from `/pomodoro.cc` inside vagrant)
 
-- `sh /pomodoro.cc/opt/docker.rm.sh`
-- `sh /pomodoro.cc/opt/docker.build.sh`
-- `sh /pomodoro.cc/opt/docker.run.sh`
+- `sh opt/docker.rm.sh`
+- `sh opt/docker.build.sh`
+- `sh opt/docker.run.sh`
 
 or
 
