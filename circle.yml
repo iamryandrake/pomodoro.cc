@@ -20,22 +20,20 @@ test:
     - cp credentials.template.json credentials.json
     - (cd api && NODE_ENV=test npm test)
     - (cd app && ./node_modules/gulp/bin/gulp.js test)
-    - (cd app && npm run e2e)
     - sh opt/docker.build.sh
     - sh opt/docker.run.sh
+    - (cd app && npm run e2e)
 
 deployment:
   production:
     branch: master
     commands:
       - (cd app && PRODUCTION=true ./node_modules/gulp/bin/gulp.js)
+      - sh opt/docker.build.sh
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      # - docker build -t christianfei/pomodoro-app app
-      # - docker push christianfei/pomodoro-app
-      # - docker build -t christianfei/pomodoro-api api
-      # - docker push christianfei/pomodoro-api
-      # - docker build -t christianfei/pomodoro-socket-io socket-io
-      # - docker push christianfei/pomodoro-socket-io
+      - docker push christianfei/pomodoro-app
+      - docker push christianfei/pomodoro-api
+      - docker push christianfei/pomodoro-socket-io
       - ssh pigeon@146.185.167.197 'cd /pomodoro.cc && git pull origin master'
       - ssh pigeon@146.185.167.197 'sh /pomodoro.cc/opt/docker.pull.sh'
       - ssh pigeon@146.185.167.197 'sh /pomodoro.cc/opt/docker.rm.sh'
