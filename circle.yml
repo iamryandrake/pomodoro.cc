@@ -1,6 +1,8 @@
 machine:
   services:
     - docker
+  hosts:
+    pomodoro.dev: 127.0.0.1
 
 dependencies:
   cache_directories:
@@ -19,6 +21,8 @@ test:
     - (cd api && NODE_ENV=test npm test)
     - (cd app && ./node_modules/gulp/bin/gulp.js test)
     - (cd app && npm run e2e)
+    - sh opt/docker.build.sh
+    - sh opt/docker.run.sh
 
 deployment:
   production:
@@ -26,8 +30,8 @@ deployment:
     commands:
       - (cd app && PRODUCTION=true ./node_modules/gulp/bin/gulp.js)
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - docker build -t christianfei/pomodoro-app app
-      - docker push christianfei/pomodoro-app
+      # - docker build -t christianfei/pomodoro-app app
+      # - docker push christianfei/pomodoro-app
       # - docker build -t christianfei/pomodoro-api api
       # - docker push christianfei/pomodoro-api
       # - docker build -t christianfei/pomodoro-socket-io socket-io
