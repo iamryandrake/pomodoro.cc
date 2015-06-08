@@ -6,8 +6,6 @@ id_for_container(){
   echo $CONTAINER_ID
 }
 
-CWD=$(pwd)
-echo "CWD:  $CWD"
 
 if [ -z "$(id_for_container 'pomodoro-api-sessions')" ]; then
   echo "\n\n"
