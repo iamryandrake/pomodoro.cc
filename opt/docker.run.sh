@@ -73,6 +73,6 @@ if [ -z "$(id_for_container 'pomodoro-app')" ]; then
     --link pomodoro-api-1:pomodoro-api-1 \
     --link pomodoro-api-2:pomodoro-api-2 \
     --link pomodoro-socket-io:pomodoro-socket-io \
-    -v $PWD/ssl:/etc/nginx/ssl$PWD \
+    -v $PWD/ssl:/etc/nginx/ssl/pomodoro.cc \
     christianfei/pomodoro-app
 fi
