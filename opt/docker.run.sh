@@ -6,7 +6,9 @@ id_for_container(){
   echo $CONTAINER_ID
 }
 
-DIR=$(dirname `readlink -f $0`)
+DIR=$(cd $(dirname `readlink -f $0`) && cd .. && pwd)
+
+echo "DIR = $DIR"
 
 
 if [ -z "$(id_for_container 'pomodoro-api-sessions')" ]; then
