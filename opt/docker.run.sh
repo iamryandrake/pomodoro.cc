@@ -6,6 +6,8 @@ id_for_container(){
   echo $CONTAINER_ID
 }
 
+DIR=$(dirname `readlink -f $0`)
+
 
 if [ -z "$(id_for_container 'pomodoro-api-sessions')" ]; then
   echo "\n\n"
@@ -23,7 +25,7 @@ if [ -z "$(id_for_container 'pomodoro-api-db')" ]; then
   docker run --name pomodoro-api-db \
     --restart=always \
     -d \
-    -v $PWD/db:/data/db \
+    -v $DIR/db:/data/db \
     mongo:latest
 fi
 
@@ -33,7 +35,7 @@ if [ -z "$(id_for_container 'pomodoro-api-1')" ]; then
   docker run --name pomodoro-api-1 \
     --restart=always \
     -d \
-    -v $PWD/credentials.json:/credentials.json \
+    -v $DIR/credentials.json:/credentials.json \
     --link pomodoro-api-sessions:pomodoro-api-sessions \
     --link pomodoro-api-db:pomodoro-api-db \
     christianfei/pomodoro-api
@@ -45,7 +47,7 @@ if [ -z "$(id_for_container 'pomodoro-api-2')" ]; then
   docker run --name pomodoro-api-2 \
     --restart=always \
     -d \
-    -v $PWD/credentials.json:/credentials.json \
+    -v $DIR/credentials.json:/credentials.json \
     --link pomodoro-api-sessions:pomodoro-api-sessions \
     --link pomodoro-api-db:pomodoro-api-db \
     christianfei/pomodoro-api
@@ -71,6 +73,6 @@ if [ -z "$(id_for_container 'pomodoro-app')" ]; then
     --link pomodoro-api-1:pomodoro-api-1 \
     --link pomodoro-api-2:pomodoro-api-2 \
     --link pomodoro-socket-io:pomodoro-socket-io \
-    -v $PWD/ssl:/etc/nginx/ssl/pomodoro.cc \
+    -v $DIR/ssl:/etc/nginx/ssl/pomodoro.cc \
     christianfei/pomodoro-app
 fi
