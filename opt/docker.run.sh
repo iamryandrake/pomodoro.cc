@@ -32,22 +32,10 @@ if [ -z "$(id_for_container 'pomodoro-api-db')" ]; then
     mongo:latest
 fi
 
-if [ -z "$(id_for_container 'pomodoro-api-1')" ]; then
+if [ -z "$(id_for_container 'pomodoro-api')" ]; then
   echo "\n\n"
-  echo "----> starting 'pomodoro-api-1'"
-  docker run --name pomodoro-api-1 \
-    --restart=always \
-    -d \
-    -v $PROJECT_DIR/credentials.json:/credentials.json \
-    --link pomodoro-api-sessions:pomodoro-api-sessions \
-    --link pomodoro-api-db:pomodoro-api-db \
-    christianfei/pomodoro-api
-fi
-
-if [ -z "$(id_for_container 'pomodoro-api-2')" ]; then
-  echo "\n\n"
-  echo "----> starting 'pomodoro-api-2'"
-  docker run --name pomodoro-api-2 \
+  echo "----> starting 'pomodoro-api'"
+  docker run --name pomodoro-api \
     --restart=always \
     -d \
     -v $PROJECT_DIR/credentials.json:/credentials.json \
@@ -73,8 +61,7 @@ if [ -z "$(id_for_container 'pomodoro-app')" ]; then
     -d \
     -p 80:80 \
     -p 443:443 \
-    --link pomodoro-api-1:pomodoro-api-1 \
-    --link pomodoro-api-2:pomodoro-api-2 \
+    --link pomodoro-api:pomodoro-api \
     --link pomodoro-socket-io:pomodoro-socket-io \
     -v $PROJECT_DIR/ssl:/etc/nginx/ssl/pomodoro.cc \
     christianfei/pomodoro-app
