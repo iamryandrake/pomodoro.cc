@@ -16,6 +16,27 @@ With the help of insightful statistics, you'll be able to better understand how 
 
 # Setup
 
+
+Setup a `credentials.json` starting from `credentials.template.json` and fill in your information.
+You'll need to create an app for github and twitter. (If you don't want to provide them, it's fine, authentication won't work, but you need at least to create this file)
+
+-----
+
+Add an entry in your `/etc/hosts`:
+
+```
+192.168.11.2    pomodoro.dev
+```
+
+Execute
+
+```
+make bootstrap
+vagrant up
+```
+
+-----
+
 The vagrant box keep the following docker containers up and running:
 
 - `pomodoro-app`: nginx container that serves the static assets and proxies requests to the api and socket-io container
@@ -36,7 +57,9 @@ or
 
 ##### [SSL certificate](https://devcenter.heroku.com/articles/ssl-certificate-self) and credentials
 
-Generate a self signed certificate and put the generated files under the `ssl` directory
+Execute `unzip ssl.zip` or
+
+generate a self signed certificate and put the generated files under the `ssl` directory with
 
 ```
 openssl genrsa -des3 -passout pass:x -out pomodoro.cc.pass.key 2048
@@ -44,27 +67,6 @@ openssl rsa -passin pass:x -in pomodoro.cc.pass.key -out pomodoro.cc.key
 openssl req -new -key pomodoro.cc.key -out pomodoro.cc.csr
 openssl x509 -req -days 365 -in pomodoro.cc.csr -signkey pomodoro.cc.key -out bundle.crt
 ```
-
-----
-
-Setup a `credentials.json` starting from `credentials.template.json` and fill in your information.
-You'll need to create an app for github and twitter. (If you don't want to provide them, it's fine, authentication won't work, but you need at least to create this file)
-
------
-
-Add an entry in your `/etc/hosts`:
-
-```
-192.168.11.2    pomodoro.dev
-```
-
-Execute
-
-```
-make bootstrap
-vagrant up
-```
-
 
 #### App
 
