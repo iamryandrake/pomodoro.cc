@@ -55,6 +55,10 @@ or
 
 - `sh opt/docker.rm.sh && sh opt/docker.build.sh && sh opt/docker.run.sh`
 
+##### Problems with Docker and Vagrant?
+
+Please refer to [this issue](https://github.com/mitchellh/vagrant/issues/5748)
+
 ##### [SSL certificate](https://devcenter.heroku.com/articles/ssl-certificate-self) and credentials
 
 Execute `unzip ssl.zip` or

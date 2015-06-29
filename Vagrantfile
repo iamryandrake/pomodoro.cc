@@ -14,6 +14,8 @@ Vagrant.configure('2') do |config|
 
   config.vm.synced_folder "./", "/pomodoro.cc", type: "nfs", :mount_options => ['nolock,vers=3,udp,noatime,actimeo=1']
 
+  config.vm.provision "shell", run: "always", path: "opt/docker.fix.sh"
+  
   config.vm.provision "docker" do |d|
     d.pull_images "redis"
     d.pull_images "mongo"
