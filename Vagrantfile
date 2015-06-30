@@ -1,5 +1,5 @@
 Vagrant.configure('2') do |config|
-  config.vm.box = 'ubuntu/precise64'
+  config.vm.box = 'ubuntu/trusty64'
   config.vm.hostname = 'pomodoro.dev'
   config.ssh.shell = 'bash -c \'BASH_ENV=/etc/profile exec bash\''
 
