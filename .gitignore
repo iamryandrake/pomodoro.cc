@@ -16,3 +16,4 @@ pomodoro.cc.sublime-workspace
 selenium-debug.log
 selenium.jar
 reports
+*.sublime-workspace
