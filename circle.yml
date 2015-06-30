@@ -41,4 +41,4 @@ deployment:
       - ssh pigeon@146.185.167.197 'sh /pomodoro.cc/opt/docker.pull.sh'
       - ssh pigeon@146.185.167.197 'sh /pomodoro.cc/opt/docker.rm.sh'
       - ssh pigeon@146.185.167.197 'sh /pomodoro.cc/opt/docker.run.sh'
-      - ssh pigeon@146.185.167.197 'sh /pomodoro.cc/opt/docker.clean.sh'
+      - ssh pigeon@146.185.167.197 'sh /pomodoro.cc/opt/docker.clean.sh || true'
