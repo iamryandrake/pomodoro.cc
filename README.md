@@ -76,7 +76,7 @@ openssl x509 -req -days 365 -in pomodoro.cc.csr -signkey pomodoro.cc.key -out bu
 
 From the `app` folder:
 
-- to recompile the assets during development, run `gulp watch`
+- to recompile the assets during development, run `npm start`
 
 - run the tests with `npm test`
 
