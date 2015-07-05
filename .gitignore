@@ -11,6 +11,7 @@ db
 app/www
 app/src/lib
 app/test/lib
+app/bin
 .DS_Store
 pomodoro.cc.sublime-workspace
 selenium-debug.log

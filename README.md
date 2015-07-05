@@ -80,7 +80,17 @@ From the `app` folder:
 
 - run the tests with `npm test`
 
-- run the end-to-end tests with `make i_web_driver` (once) and `npm run e2e-test`
+- run the end-to-end tests with `npm run e2e`
+
+###### e2e
+
+By default `npm run e2e` runs the tests against firefox.
+
+If you want to run the tests against chrome safari and firefox you can use `npm run e2e-cross-browser`
+
+You have to install the correct chrome.webdriver and put it in `bin/`. You can download it from [here](http://chromedriver.storage.googleapis.com/index.html?path=2.16/)
+
+You have to install the safari webdriver extension from [here](http://selenium-release.storage.googleapis.com/index.html?path=2.45/)
 
 #### Api
 
