@@ -3,7 +3,7 @@
 SCRIPT_DIR=$(dirname `readlink -f $0`)
 PROJECT_DIR=$(dirname $SCRIPT_DIR)
 
-if [ "$PROJECT_DIR" == "/" ]; then
+if [ "$PROJECT_DIR" = "/" ]; then
   PROJECT_DIR="/pomodoro.cc"
 fi
 
