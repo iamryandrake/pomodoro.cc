@@ -10,7 +10,6 @@ dependencies:
   cache_directories:
     - "app/node_modules"
     - "api/node_modules"
-    - "socket-io/node_modules"
   override:
     - npm install
     - (cd app && npm install)
@@ -36,7 +35,6 @@ deployment:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push christianfei/pomodoro-app
       - docker push christianfei/pomodoro-api
-      - docker push christianfei/pomodoro-socket-io
       - ssh pigeon@146.185.167.197 'cd /pomodoro.cc && git pull origin master'
       - ssh pigeon@146.185.167.197 'sh /pomodoro.cc/opt/docker.pull.sh'
       - ssh pigeon@146.185.167.197 'sh /pomodoro.cc/opt/docker.rm.sh'
