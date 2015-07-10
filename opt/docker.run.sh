@@ -33,6 +33,16 @@ if [ -z "$(id_for_container 'pomodoro-api-db')" ]; then
     mongo:latest
 fi
 
+if [ -z "$(id_for_container 'pomodoro-blog')" ]; then
+  echo "\n\n"
+  echo "----> starting 'pomodoro-blog'"
+  docker run --name pomodoro-blog \
+    --restart=always \
+    -d \
+    -v=$PROJECT_DIR/blog:/srv/jekyll \
+    jekyll/stable
+fi
+
 if [ -z "$(id_for_container 'pomodoro-api')" ]; then
   echo "\n\n"
   echo "----> starting 'pomodoro-api'"
@@ -54,6 +64,7 @@ if [ -z "$(id_for_container 'pomodoro-app')" ]; then
     -p 80:80 \
     -p 443:443 \
     --link pomodoro-api:pomodoro-api \
+    --link pomodoro-blog:pomodoro-blog \
     -v $PROJECT_DIR/ssl:/etc/nginx/ssl/pomodoro.cc \
     christianfei/pomodoro-app
 fi

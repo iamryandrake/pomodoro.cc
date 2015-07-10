@@ -21,5 +21,6 @@ stop_container(){
 stop_container 'pomodoro-api'
 stop_container 'pomodoro-api-1'
 stop_container 'pomodoro-api-2'
+stop_container 'pomodoro-blog'
 stop_container 'pomodoro-app'
 stop_container 'pomodoro'

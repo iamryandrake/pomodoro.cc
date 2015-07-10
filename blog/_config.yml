@@ -1,0 +1,35 @@
+name: Pomodoro.cc Tech Blog
+description: Pomodori all the way down
+meta_description: "Follow the Pomodoro.cc Tech Blog for product announcements, feature updates, and technical posts."
+
+aboutPage: true
+
+markdown: redcarpet
+highlighter: pygments
+
+paginate: 20
+baseurl: /blog
+domain_name: 'http://pomodoro.cc/blog'
+google_analytics: 'UA-54555614-3'
+disqus_shortname: 'christian-fei'
+
+# Details for the RSS feed generator
+url:            'httpc://pomodoro.cc/blog'
+author:         'Pomodoro.cc Tech Blog'
+authorTwitter:  'christian_fei'
+
+permalink:       /:year/:title/
+
+defaults:
+    -
+        scope:
+            path: "" # empty string for all files
+            type: pages
+        values:
+            layout: default
+    -
+        scope:
+            path: "" # empty string for all files
+            type: posts
+        values:
+            layout: post
