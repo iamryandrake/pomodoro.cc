@@ -75,6 +75,7 @@ if [ -z "$(id_for_container 'pomodoro-main')" ]; then
     --link pomodoro-app:pomodoro-app \
     --link pomodoro-api:pomodoro-api \
     --link pomodoro-blog:pomodoro-blog \
+    -v $PROJECT_DIR/main/etc/nginx/nginx.conf:/etc/nginx/nginx.conf \
     -v $PROJECT_DIR/ssl:/etc/nginx/ssl/pomodoro.cc \
-    christianfei/pomodoro-main
+    nginx:1.9.1
 fi

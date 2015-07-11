@@ -8,10 +8,6 @@ if [ "$PROJECT_DIR" = "/" ]; then
 fi
 
 echo "\n\n"
-echo "----> building pomodoro-main"
-docker build -t christianfei/pomodoro-main $PROJECT_DIR/main
-
-echo "\n\n"
 echo "----> building pomodoro-app"
 docker build -t christianfei/pomodoro-app $PROJECT_DIR/app
 
