@@ -21,6 +21,8 @@ Since then, pomodoro.cc experienced
 
 ![pomodoro.cc statistics](/blog/assets/images/posts/statistics.png)
 
+The enourmous spike is when I launched pomodoro.cc on [ProductHunt](http://www.producthunt.com/tech/pomodoro-cc). Things went crazy since then, still getting traffic from the site.
+
 ---
 
 The data aggregated during this time is also interesting:
