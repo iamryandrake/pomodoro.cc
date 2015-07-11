@@ -98,6 +98,5 @@ You have to install the safari webdriver extension from [here](http://selenium-r
 You can run the tests with: (inside vagrant)
 
 ```
-docker run --name pomodoro-api-db-test --restart=always -d mongo:latest
-docker run -it --link=pomodoro-api-db-test:pomodoro-api-db -v /pomodoro.cc/credentials.json:/credentials.json christianfei/pomodoro-api sh -c 'npm install && npm test'
+sh /pomodoro.cc/api/opt/test.docker.sh
 ```
