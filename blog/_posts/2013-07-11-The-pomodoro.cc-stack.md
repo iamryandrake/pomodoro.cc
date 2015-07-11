@@ -1,6 +1,6 @@
 ---
 title:  "The pomodoro.cc stack"
-date:   2013-07-11
+date:   2015-07-11
 description: Understand how pomodoro.cc is built and how it keeps its services up and running.
 ---
 
