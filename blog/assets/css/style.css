@@ -647,3 +647,7 @@ h2.month {
 pre {
   white-space: pre;
 }
+
+code {
+  font-weight: bold;
+}
