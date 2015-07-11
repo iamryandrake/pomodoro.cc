@@ -61,10 +61,20 @@ if [ -z "$(id_for_container 'pomodoro-app')" ]; then
   docker run --name pomodoro-app \
     --restart=always \
     -d \
+    christianfei/pomodoro-app
+fi
+
+if [ -z "$(id_for_container 'pomodoro-main')" ]; then
+  echo "\n\n"
+  echo "----> starting 'pomodoro-main'"
+  docker run --name pomodoro-main \
+    --restart=always \
+    -d \
     -p 80:80 \
     -p 443:443 \
+    --link pomodoro-app:pomodoro-app \
     --link pomodoro-api:pomodoro-api \
     --link pomodoro-blog:pomodoro-blog \
     -v $PROJECT_DIR/ssl:/etc/nginx/ssl/pomodoro.cc \
-    christianfei/pomodoro-app
+    christianfei/pomodoro-main
 fi
