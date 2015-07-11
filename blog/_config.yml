@@ -11,7 +11,7 @@ paginate: 20
 baseurl: /blog
 domain_name: 'http://pomodoro.cc/blog'
 google_analytics: 'UA-54555614-3'
-disqus_shortname: 'christian-fei'
+disqus_shortname: 'christianfei'
 
 # Details for the RSS feed generator
 url:            'httpc://pomodoro.cc/blog'
