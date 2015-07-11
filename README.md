@@ -39,8 +39,10 @@ vagrant up
 
 The vagrant box keep the following docker containers up and running:
 
-- `pomodoro-app`: nginx container that serves the static assets and proxies requests to the api container
-- `pomodoro-api`: node container that represents the api
+- `pomodoro-main`: nginx container that routes traffic to one of the following containers
+  - `pomodoro-app`: nginx container that serves the static assets
+  - `pomodoro-api`: node container that represents the api
+  - `pomodoro-blog`: node container that contains the blog
 - `redis`: for the sessions shared between the two instances of `pomodoro-api`
 - `mongo`: db for the `pomodoro-api` to save pomodori of registered users
 
