@@ -18,6 +18,7 @@ Since then, pomodoro.cc experienced
 - **34%** bounce rate
 
 **25%** on average are returning visitors, though with the latest release in the last month this number went up to **40%**
+And also the average session during went up to **40min**
 
 ![pomodoro.cc statistics](/blog/assets/images/posts/statistics.png)
 
