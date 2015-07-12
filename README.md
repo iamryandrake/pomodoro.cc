@@ -48,13 +48,13 @@ The vagrant box keep the following docker containers up and running:
 
 To rebuild the infrastructure run (from `/pomodoro.cc` inside vagrant)
 
-- `sh opt/docker.rm.sh`
 - `sh opt/docker.build.sh`
+- `sh opt/docker.rm.sh`
 - `sh opt/docker.run.sh`
 
 or
 
-- `sh opt/docker.rm.sh && sh opt/docker.build.sh && sh opt/docker.run.sh`
+- `sh opt/docker.build.sh && sh opt/docker.rm.sh && sh opt/docker.run.sh`
 
 ##### Problems with Docker and Vagrant?
 
