@@ -6,29 +6,31 @@ describe('PomodoroUtils', function () {
   it('calculates the duration of a pomodoro', function () {
     var pomodoro = {
       minutes: 25,
-      startedAt: Date.now()
+      startedAt: new Date
     }
     expect( PomodoroUtils.getDuration(pomodoro) ).to.equal(25*60)
   })
   it('calculates the duration of a cancelled pomodoro', function () {
+    var startedAt = new Date
+    startedAt.setMinutes(startedAt.getMinutes()-20)
     var pomodoro = {
       minutes: 25,
-      startedAt: Date.now() - 20*60*1000,
-      cancelledAt: Date.now()
+      startedAt: startedAt,
+      cancelledAt: new Date
     }
     expect( PomodoroUtils.getDuration(pomodoro) ).to.equal(20*60)
   })
   it('calculates the duration in minutes', function () {
     var pomodoro = {
       minutes: 25,
-      startedAt: Date.now()
+      startedAt: new Date
     }
     expect( PomodoroUtils.getDurationInMinutes(pomodoro) ).to.equal(25)
   })
   it('calculates the duration in hours', function () {
     var pomodoro = {
       minutes: 25,
-      startedAt: Date.now()
+      startedAt: new Date
     }
     expect( PomodoroUtils.getDurationInHours(pomodoro) ).to.equal( 0.4 )
   })
