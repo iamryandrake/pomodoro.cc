@@ -25,7 +25,7 @@ describe('PomodoroUtils', function () {
       minutes: 25,
       startedAt: new Date
     }
-    expect( PomodoroUtils.getDurationInMinutes(pomodoro) ).to.equal(25)
+    expect( PomodoroUtils.calculateDurationInMinutes(pomodoro) ).to.equal(25)
   })
   it('calculates the duration in hours', function () {
     var pomodoro = {
