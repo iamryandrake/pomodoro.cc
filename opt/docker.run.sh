@@ -50,6 +50,7 @@ if [ -z "$(id_for_container 'pomodoro-api')" ]; then
     --restart=always \
     -d \
     -v $PROJECT_DIR/credentials.json:/credentials.json \
+    -v $PROJECT_DIR/shared:/shared \
     --link pomodoro-api-sessions:pomodoro-api-sessions \
     --link pomodoro-api-db:pomodoro-api-db \
     christianfei/pomodoro-api
