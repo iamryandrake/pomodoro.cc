@@ -1,12 +1,12 @@
 var moment = require('moment')
 module.exports = {
-  getDuration: getDuration,
+  calculateDuration: calculateDuration,
   calculateDurationInMinutes: calculateDurationInMinutes,
-  getDurationInHours: getDurationInHours,
+  calculateDurationInHours: calculateDurationInHours,
   minutesToDuration: minutesToDuration
 }
 
-function getDuration(pomodoro){
+function calculateDuration(pomodoro){
   if( !pomodoro || pomodoro.startedAt === undefined || pomodoro.minutes === undefined ) {
     return 0
   }
@@ -23,9 +23,9 @@ function getDuration(pomodoro){
 
 
 function calculateDurationInMinutes(pomodoro){
-  return parseInt(getDuration(pomodoro)/60, 10)
+  return parseInt(calculateDuration(pomodoro)/60, 10)
 }
-function getDurationInHours(pomodoro){
+function calculateDurationInHours(pomodoro){
   return trimDecimals(calculateDurationInMinutes(pomodoro)/60, 1)
 }
 
