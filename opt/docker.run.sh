@@ -9,8 +9,9 @@ id_for_container(){
 SCRIPT_DIR=$(dirname `readlink -f $0`)
 PROJECT_DIR=$(dirname $SCRIPT_DIR)
 
-echo "SCRIPT_DIR=$SCRIPT_DIR"
-echo "PROJECT_DIR=$PROJECT_DIR"
+if [ "$PROJECT_DIR" = "/" ]; then
+  PROJECT_DIR="/pomodoro.cc"
+fi
 
 if [ -z "$(id_for_container 'pomodoro-api-sessions')" ]; then
   echo "\n\n"
