@@ -100,3 +100,9 @@ You can run the tests with: (inside vagrant)
 ```
 sh /pomodoro.cc/api/opt/test.docker.sh
 ```
+
+###### seed the db
+
+```
+sh /pomodoro.cc/opt/docker.seed.sh
+```

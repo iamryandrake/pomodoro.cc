@@ -21,7 +21,6 @@ Vagrant.configure('2') do |config|
     d.pull_images "mongo"
   end
 
-  config.vm.provision "shell", run: "always", path: "opt/docker.rm.sh"
   config.vm.provision "shell", run: "always", path: "opt/docker.build.sh"
   config.vm.provision "shell", run: "always", path: "opt/docker.run.sh"
 
