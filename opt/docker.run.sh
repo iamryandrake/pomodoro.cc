@@ -134,3 +134,33 @@ if [ -z "$(id_for_container 'pomodoro-main')" ]; then
     -v $PROJECT_DIR/ssl:/etc/nginx/ssl/pomodoro.cc \
     nginx:1.9.1
 fi
+
+
+
+
+echo "\n\n\n"
+echo "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"
+echo "MMMMMMMMMMMMMMMMMMMMMMMMMMMNmMMMMMMMMMMMMMMMMMMMMM"
+echo "MMMMMMMMMMMMMMMNMMMMMMMMMmoyyNMMMMMMMMMMMMMMMMMMMM"
+echo "MMMMMMMMMMMMMMNshhddmNMMdyhyMMMMMMMMMMMMMMMMMMMMMM"
+echo "MMMMMMMMMMMMmddyyhhhhysoyh+yhhdhhdhhmMMMMMMMMMMMMM"
+echo "MMMMMMMMNhyoooo+sydysyhhhhhhhhhhhsso/+oydMMMMMMMMM"
+echo "MMMMMMNyoooooooooyyhhhhshhyyhhhsom++oooooohMMMMMMM"
+echo "MMMMMmooooooo+o+shhhhhyshhh/yyhhhys/o+ooooooNMMMMM"
+echo "MMMMd+oooooo+syyyyyyyhNhhhhsmyohhdhyo+ooooooomMMMM"
+echo "MMMN+ooooooooooooyso+o/hyhhsy/o++oo+ooooooososMMMM"
+echo "MMMsooooooooooooooooooo+-shohoooooooooooooooo+MMMM"
+echo "MMM/oooooooooooooooooooo++sy+oooooooooooooooo+NMMM"
+echo "MMM/ooooooooooooooooooooooooooooooooooooooooooyMMM"
+echo "MMMooooooooooooooooooooooooooooooooooooooooooomMMM"
+echo "MMMyooooooooooooooooooooooooooooooooooooooooo+NMMM"
+echo "MMMMooooooooooooooooooooooooooooooooooooooooosMMMM"
+echo "MMMMd+oooooooooooooooooooooooooooooooooooooooNMMMM"
+echo "MMMMMyoooooooooooooooooooooooooooooooooooooomMMMMM"
+echo "MMMMMMNooooooooooooooooooooooooooooooooooooNMMMMMM"
+echo "MMMMMMMMdoooooooooooooooooooooooooooooooohMMMMMMMM"
+echo "MMMMMMMMMMdooooooooooooooooooooooooooosdMMMMMMMMMM"
+echo "MMMMMMMMMMMMdho+oooooooooooooooooo+shNMMMMMMMMMMMM"
+echo "MMMMMMMMMMMMMMMNdhysooo+ooosossyhdMMMMMMMMMMMMMMMM"
+echo "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"
+echo "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"
