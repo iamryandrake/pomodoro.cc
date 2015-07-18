@@ -1,11 +1,12 @@
 #!/bin/bash
 
-DEV=false
+ENV="PRO"
+echo "1) ENV=$ENV"
 if [ "$1" = "DEV" ];then
-  DEV=true
+  ENV="DEV"
 fi
 
-echo "DEV=$DEV"
+echo "2) ENV=$ENV"
 
 id_for_container(){
   CONTAINER="$1\s*$"
@@ -57,6 +58,7 @@ if [ -z "$(id_for_container 'pomodoro-api-1')" ]; then
   docker run --name pomodoro-api-1 \
     --restart=always \
     -d \
+    --env ENV="$ENV" \
     -v $PROJECT_DIR/credentials.json:/credentials.json \
     -v $PROJECT_DIR/shared:/shared \
     --link pomodoro-api-sessions:pomodoro-api-sessions \
@@ -70,6 +72,7 @@ if [ -z "$(id_for_container 'pomodoro-api-2')" ]; then
   docker run --name pomodoro-api-2 \
     --restart=always \
     -d \
+    --env ENV="$ENV" \
     -v $PROJECT_DIR/credentials.json:/credentials.json \
     -v $PROJECT_DIR/shared:/shared \
     --link pomodoro-api-sessions:pomodoro-api-sessions \
@@ -80,7 +83,7 @@ fi
 if [ -z "$(id_for_container 'pomodoro-app')" ]; then
   echo "\n\n"
   echo "----> starting 'pomodoro-app'"
-  if [ "$DEV" = true ]; then
+  if [ "$ENV" = "DEV" ]; then
     docker run --name pomodoro-app \
       --restart=always \
       -d \
