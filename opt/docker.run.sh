@@ -1,5 +1,12 @@
 #!/bin/bash
 
+DEV=false
+if [ "$1" = "DEV" ];then
+  DEV=true
+fi
+
+echo "DEV=$DEV"
+
 id_for_container(){
   CONTAINER="$1\s*$"
   CONTAINER_ID="$(docker ps -a | grep "$CONTAINER" | awk '{print $1}')"
@@ -60,10 +67,18 @@ fi
 if [ -z "$(id_for_container 'pomodoro-app')" ]; then
   echo "\n\n"
   echo "----> starting 'pomodoro-app'"
-  docker run --name pomodoro-app \
-    --restart=always \
-    -d \
-    christianfei/pomodoro-app
+  if [ "$DEV" = true ]; then
+    docker run --name pomodoro-app \
+      --restart=always \
+      -d \
+      -v $PROJECT_DIR/app/www:/var/www/pomodoro.cc/ \
+      christianfei/pomodoro-app
+  else
+    docker run --name pomodoro-app \
+      --restart=always \
+      -d \
+      christianfei/pomodoro-app
+  fi
 fi
 
 if [ -z "$(id_for_container 'pomodoro-main')" ]; then
