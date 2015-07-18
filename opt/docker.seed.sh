@@ -11,6 +11,6 @@ echo "-------> SEEDING: $PROJECT_DIR/api/opt/mongo/seed.js"
 ls -lh $PROJECT_DIR/api/opt/mongo/seed.js
 
 docker run -it --link pomodoro-api-db:mongo_alias \
-  -v $PROJECT_DIR/db:/data/db \
-  -v $PROJECT_DIR/api/opt/mongo/seed.js:/run.js \
+  --volume $PROJECT_DIR/db:/data/db \
+  --volume $PROJECT_DIR/api/opt/mongo/seed.js:/run.js \
   mongo sh -c "mongo --host mongo_alias < /run.js"
