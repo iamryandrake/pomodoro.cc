@@ -19,9 +19,9 @@ test:
     - cp credentials.template.json credentials.json
     - (cd api && NODE_ENV=test npm test)
     - (cd app && ./node_modules/gulp/bin/gulp.js test)
-    - sh opt/docker.build.sh DEV
+    - sh opt/docker.build.sh
     - unzip ssl.zip -d .
-    - sh opt/docker.run.sh
+    - sh opt/docker.run.sh DEV
     - (cd app && npm run e2e)
 
 deployment:
