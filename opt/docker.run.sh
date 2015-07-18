@@ -28,7 +28,7 @@ if [ -z "$(id_for_container 'pomodoro-api-sessions')" ]; then
   echo "----> STARTING 'pomodoro-api-sessions'"
   docker run --name pomodoro-api-sessions \
     --restart=always \
-    -d \
+    --detach=true \
     redis:latest \
     redis-server
 fi
@@ -41,9 +41,9 @@ if [ -z "$(id_for_container 'pomodoro-api-db')" ]; then
   echo "----> STARTING 'pomodoro-api-db'"
   docker run --name pomodoro-api-db \
     --restart=always \
-    -d \
-    -v /db:/data/db \
-    -v /backup:/backup \
+    --detach=true \
+    --volume /db:/data/db \
+    --volume /backup:/backup \
     mongo:latest
 fi
 
@@ -56,8 +56,8 @@ if [ -z "$(id_for_container 'pomodoro-blog')" ]; then
   echo "----> STARTING 'pomodoro-blog'"
   docker run --name pomodoro-blog \
     --restart=always \
-    -d \
-    -v=$PROJECT_DIR/blog:/srv/jekyll \
+    --detach=true \
+    --volume $PROJECT_DIR/blog:/srv/jekyll \
     jekyll/stable
 fi
 
@@ -70,10 +70,10 @@ if [ -z "$(id_for_container 'pomodoro-api-1')" ]; then
   echo "----> STARTING 'pomodoro-api-1'"
   docker run --name pomodoro-api-1 \
     --restart=always \
-    -d \
+    --detach=true \
     --env ENV="$ENV" \
-    -v $PROJECT_DIR/credentials.json:/credentials.json \
-    -v $PROJECT_DIR/shared:/shared \
+    --volume $PROJECT_DIR/credentials.json:/credentials.json \
+    --volume $PROJECT_DIR/shared:/shared \
     --link pomodoro-api-sessions:pomodoro-api-sessions \
     --link pomodoro-api-db:pomodoro-api-db \
     christianfei/pomodoro-api
@@ -84,10 +84,10 @@ if [ -z "$(id_for_container 'pomodoro-api-2')" ]; then
   echo "----> STARTING 'pomodoro-api-2'"
   docker run --name pomodoro-api-2 \
     --restart=always \
-    -d \
+    --detach=true \
     --env ENV="$ENV" \
-    -v $PROJECT_DIR/credentials.json:/credentials.json \
-    -v $PROJECT_DIR/shared:/shared \
+    --volume $PROJECT_DIR/credentials.json:/credentials.json \
+    --volume $PROJECT_DIR/shared:/shared \
     --link pomodoro-api-sessions:pomodoro-api-sessions \
     --link pomodoro-api-db:pomodoro-api-db \
     christianfei/pomodoro-api
@@ -103,13 +103,13 @@ if [ -z "$(id_for_container 'pomodoro-app')" ]; then
   if [ "$ENV" = "DEV" ]; then
     docker run --name pomodoro-app \
       --restart=always \
-      -d \
-      -v $PROJECT_DIR/app/www:/var/www/pomodoro.cc/ \
+      --detach=true \
+      --volume $PROJECT_DIR/app/www:/var/www/pomodoro.cc/ \
       christianfei/pomodoro-app
   else
     docker run --name pomodoro-app \
       --restart=always \
-      -d \
+      --detach=true \
       christianfei/pomodoro-app
   fi
 fi
@@ -123,15 +123,15 @@ if [ -z "$(id_for_container 'pomodoro-main')" ]; then
   echo "----> STARTING 'pomodoro-main'"
   docker run --name pomodoro-main \
     --restart=always \
-    -d \
-    -p 80:80 \
-    -p 443:443 \
+    --detach=true \
+    --publish 80:80 \
+    --publish 443:443 \
     --link pomodoro-app:pomodoro-app \
     --link pomodoro-api-1:pomodoro-api-1 \
     --link pomodoro-api-2:pomodoro-api-2 \
     --link pomodoro-blog:pomodoro-blog \
-    -v $PROJECT_DIR/main/etc/nginx/nginx.conf:/etc/nginx/nginx.conf \
-    -v $PROJECT_DIR/ssl:/etc/nginx/ssl/pomodoro.cc \
+    --volume $PROJECT_DIR/main/etc/nginx/nginx.conf:/etc/nginx/nginx.conf \
+    --volume $PROJECT_DIR/ssl:/etc/nginx/ssl/pomodoro.cc \
     nginx:1.9.1
 fi
 
