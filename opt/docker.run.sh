@@ -51,10 +51,23 @@ if [ -z "$(id_for_container 'pomodoro-blog')" ]; then
     jekyll/stable
 fi
 
-if [ -z "$(id_for_container 'pomodoro-api')" ]; then
+if [ -z "$(id_for_container 'pomodoro-api-1')" ]; then
   echo "\n\n"
-  echo "----> starting 'pomodoro-api'"
-  docker run --name pomodoro-api \
+  echo "----> starting 'pomodoro-api-1'"
+  docker run --name pomodoro-api-1 \
+    --restart=always \
+    -d \
+    -v $PROJECT_DIR/credentials.json:/credentials.json \
+    -v $PROJECT_DIR/shared:/shared \
+    --link pomodoro-api-sessions:pomodoro-api-sessions \
+    --link pomodoro-api-db:pomodoro-api-db \
+    christianfei/pomodoro-api
+fi
+
+if [ -z "$(id_for_container 'pomodoro-api-2')" ]; then
+  echo "\n\n"
+  echo "----> starting 'pomodoro-api-2'"
+  docker run --name pomodoro-api-2 \
     --restart=always \
     -d \
     -v $PROJECT_DIR/credentials.json:/credentials.json \
@@ -90,7 +103,8 @@ if [ -z "$(id_for_container 'pomodoro-main')" ]; then
     -p 80:80 \
     -p 443:443 \
     --link pomodoro-app:pomodoro-app \
-    --link pomodoro-api:pomodoro-api \
+    --link pomodoro-api-1:pomodoro-api-1 \
+    --link pomodoro-api-2:pomodoro-api-2 \
     --link pomodoro-blog:pomodoro-blog \
     -v $PROJECT_DIR/main/etc/nginx/nginx.conf:/etc/nginx/nginx.conf \
     -v $PROJECT_DIR/ssl:/etc/nginx/ssl/pomodoro.cc \
