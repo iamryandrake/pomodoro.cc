@@ -42,8 +42,8 @@ if [ -z "$(id_for_container 'pomodoro-api-db')" ]; then
   docker run --name pomodoro-api-db \
     --restart=always \
     -d \
-    -v $PROJECT_DIR/db:/data/db \
-    -v $PROJECT_DIR/backup:/backup \
+    -v /db:/data/db \
+    -v /backup:/backup \
     mongo:latest
 fi
 
