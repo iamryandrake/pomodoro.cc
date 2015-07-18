@@ -22,6 +22,7 @@ test:
     - sh opt/docker.build.sh
     - unzip ssl.zip -d .
     - sh opt/docker.run.sh DEV
+    - sh opt/docker.seed.sh
     - (cd app && npm run e2e)
 
 deployment:
