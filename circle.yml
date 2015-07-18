@@ -21,8 +21,8 @@ test:
     - (cd app && ./node_modules/gulp/bin/gulp.js test)
     - sh opt/docker.build.sh
     - unzip ssl.zip -d .
-    - sh opt/docker.seed.sh
     - sh opt/docker.run.sh DEV
+    - sh opt/docker.seed.sh
     - (cd app && npm run e2e)
 
 deployment:
