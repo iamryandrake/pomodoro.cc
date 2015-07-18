@@ -7,10 +7,15 @@ if [ "$PROJECT_DIR" = "/" ]; then
   PROJECT_DIR="/pomodoro.cc"
 fi
 
-echo "\n\n"
-echo "----> building pomodoro-app"
-docker build -t christianfei/pomodoro-app $PROJECT_DIR/app
+build_container(){
+  NAME=$1
+  echo "\n\n"
+  echo "----> BUILDING pomodoro-$NAME"
+  docker build -t christianfei/pomodoro-$NAME $PROJECT_DIR/$NAME
+}
 
-echo "\n\n"
-echo "----> building pomodoro-api"
-docker build -t christianfei/pomodoro-api $PROJECT_DIR/api
+
+
+
+build_container 'app'
+build_container 'api'

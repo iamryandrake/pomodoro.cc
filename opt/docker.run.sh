@@ -1,12 +1,15 @@
 #!/bin/bash
 
+SCRIPT_DIR=$(dirname `readlink -f $0`)
+PROJECT_DIR=$(dirname $SCRIPT_DIR)
+if [ "$PROJECT_DIR" = "/" ]; then
+  PROJECT_DIR="/pomodoro.cc"
+fi
+
 ENV="PRO"
-echo "1) ENV=$ENV"
 if [ "$1" = "DEV" ];then
   ENV="DEV"
 fi
-
-echo "2) ENV=$ENV"
 
 id_for_container(){
   CONTAINER="$1\s*$"
@@ -14,16 +17,15 @@ id_for_container(){
   echo $CONTAINER_ID
 }
 
-SCRIPT_DIR=$(dirname `readlink -f $0`)
-PROJECT_DIR=$(dirname $SCRIPT_DIR)
 
-if [ "$PROJECT_DIR" = "/" ]; then
-  PROJECT_DIR="/pomodoro.cc"
-fi
+
+
+
+
 
 if [ -z "$(id_for_container 'pomodoro-api-sessions')" ]; then
   echo "\n\n"
-  echo "----> starting 'pomodoro-api-sessions'"
+  echo "----> STARTING 'pomodoro-api-sessions'"
   docker run --name pomodoro-api-sessions \
     --restart=always \
     -d \
@@ -31,9 +33,12 @@ if [ -z "$(id_for_container 'pomodoro-api-sessions')" ]; then
     redis-server
 fi
 
+
+
+
 if [ -z "$(id_for_container 'pomodoro-api-db')" ]; then
   echo "\n\n"
-  echo "----> starting 'pomodoro-api-db'"
+  echo "----> STARTING 'pomodoro-api-db'"
   docker run --name pomodoro-api-db \
     --restart=always \
     -d \
@@ -42,9 +47,13 @@ if [ -z "$(id_for_container 'pomodoro-api-db')" ]; then
     mongo:latest
 fi
 
+
+
+
+
 if [ -z "$(id_for_container 'pomodoro-blog')" ]; then
   echo "\n\n"
-  echo "----> starting 'pomodoro-blog'"
+  echo "----> STARTING 'pomodoro-blog'"
   docker run --name pomodoro-blog \
     --restart=always \
     -d \
@@ -52,9 +61,13 @@ if [ -z "$(id_for_container 'pomodoro-blog')" ]; then
     jekyll/stable
 fi
 
+
+
+
+
 if [ -z "$(id_for_container 'pomodoro-api-1')" ]; then
   echo "\n\n"
-  echo "----> starting 'pomodoro-api-1'"
+  echo "----> STARTING 'pomodoro-api-1'"
   docker run --name pomodoro-api-1 \
     --restart=always \
     -d \
@@ -68,7 +81,7 @@ fi
 
 if [ -z "$(id_for_container 'pomodoro-api-2')" ]; then
   echo "\n\n"
-  echo "----> starting 'pomodoro-api-2'"
+  echo "----> STARTING 'pomodoro-api-2'"
   docker run --name pomodoro-api-2 \
     --restart=always \
     -d \
@@ -80,9 +93,13 @@ if [ -z "$(id_for_container 'pomodoro-api-2')" ]; then
     christianfei/pomodoro-api
 fi
 
+
+
+
+
 if [ -z "$(id_for_container 'pomodoro-app')" ]; then
   echo "\n\n"
-  echo "----> starting 'pomodoro-app'"
+  echo "----> STARTING 'pomodoro-app'"
   if [ "$ENV" = "DEV" ]; then
     docker run --name pomodoro-app \
       --restart=always \
@@ -97,9 +114,13 @@ if [ -z "$(id_for_container 'pomodoro-app')" ]; then
   fi
 fi
 
+
+
+
+
 if [ -z "$(id_for_container 'pomodoro-main')" ]; then
   echo "\n\n"
-  echo "----> starting 'pomodoro-main'"
+  echo "----> STARTING 'pomodoro-main'"
   docker run --name pomodoro-main \
     --restart=always \
     -d \

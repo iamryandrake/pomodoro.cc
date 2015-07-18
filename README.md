@@ -98,7 +98,7 @@ You have to install the safari webdriver extension from [here](http://selenium-r
 You can run the tests with: (inside vagrant)
 
 ```
-sh /pomodoro.cc/api/opt/test.docker.sh
+sh /pomodoro.cc/api/opt/docker.test.sh
 ```
 
 ###### seed the db
