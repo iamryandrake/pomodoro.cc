@@ -11,6 +11,11 @@ if [ "$1" = "DEV" ];then
   ENV="DEV"
 fi
 
+echo "\n\n\n"
+echo "========="
+echo "|ENV=$ENV|"
+echo "========="
+
 id_for_container(){
   CONTAINER="$1\s*$"
   CONTAINER_ID="$(docker ps -a | grep "$CONTAINER" | awk '{print $1}')"
