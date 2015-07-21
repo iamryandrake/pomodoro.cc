@@ -17,7 +17,7 @@ dependencies:
 
 test:
   override:
-    - (cd api && NODE_ENV=test npm test)
+    - sh api/opt/docker.test.sh
     - (cd app && ./node_modules/gulp/bin/gulp.js test)
     - sh opt/docker.build.sh
     - unzip ssl.zip -d .
