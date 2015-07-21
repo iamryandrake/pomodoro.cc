@@ -8,16 +8,12 @@ dependencies:
   cache_directories:
     - "app/node_modules"
     - "api/node_modules"
-    - "~/docker"
   override:
     - npm install
     - (cd app && npm install)
     - (cd app && ./node_modules/gulp/bin/gulp.js)
     - (cd api && npm install)
     - cp credentials.template.json credentials.json
-    - echo "-- CACHING DOCKER"
-    - if [[ -e ~/docker/pomodoro-api.tar ]]; then docker load -i ~/docker/pomodoro-api.tar; fi
-    - if [[ -e ~/docker/pomodoro-app.tar ]]; then docker load -i ~/docker/pomodoro-app.tar; fi
     - sh opt/docker.build.sh
 
 test:
@@ -43,6 +39,3 @@ deployment:
       - ssh pigeon@146.185.167.197 'sh /pomodoro.cc/opt/docker.rm.sh'
       - ssh pigeon@146.185.167.197 'sh /pomodoro.cc/opt/docker.run.sh'
       - ssh pigeon@146.185.167.197 'sh /pomodoro.cc/opt/docker.clean.sh || true'
-      - mkdir -p ~/docker;
-      - docker save christianfei/pomodoro-api > ~/docker/pomodoro-api.tar
-      - docker save christianfei/pomodoro-api > ~/docker/pomodoro-app.tar
