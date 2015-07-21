@@ -8,17 +8,24 @@ dependencies:
   cache_directories:
     - "app/node_modules"
     - "api/node_modules"
+    - "~/docker"
   override:
     - npm install
     - (cd app && npm install)
     - (cd app && ./node_modules/gulp/bin/gulp.js)
     - (cd api && npm install)
     - cp credentials.template.json credentials.json
+    - echo "-- CACHING DOCKER"
+    - if [[ -e ~/docker/pomodoro-api.tar ]]; then docker load -i ~/docker/pomodoro-api.tar; fi
+    - if [[ -e ~/docker/pomodoro-app.tar ]]; then docker load -i ~/docker/pomodoro-app.tar; fi
+    - sh opt/docker.build.sh
+    - mkdir -p ~/docker;
+    - docker save christianfei/pomodoro-api > ~/docker/pomodoro-api.tar
+    - docker save christianfei/pomodoro-api > ~/docker/pomodoro-app.tar
 
 test:
   override:
     - (cd app && ./node_modules/gulp/bin/gulp.js test)
-    - sh opt/docker.build.sh
     - sh api/opt/docker.test.sh
     - unzip ssl.zip -d .
     - sh opt/docker.run.sh DEV
