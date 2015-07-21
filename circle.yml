@@ -19,9 +19,6 @@ dependencies:
     - if [[ -e ~/docker/pomodoro-api.tar ]]; then docker load -i ~/docker/pomodoro-api.tar; fi
     - if [[ -e ~/docker/pomodoro-app.tar ]]; then docker load -i ~/docker/pomodoro-app.tar; fi
     - sh opt/docker.build.sh
-    - mkdir -p ~/docker;
-    - docker save christianfei/pomodoro-api > ~/docker/pomodoro-api.tar
-    - docker save christianfei/pomodoro-api > ~/docker/pomodoro-app.tar
 
 test:
   override:
@@ -46,3 +43,6 @@ deployment:
       - ssh pigeon@146.185.167.197 'sh /pomodoro.cc/opt/docker.rm.sh'
       - ssh pigeon@146.185.167.197 'sh /pomodoro.cc/opt/docker.run.sh'
       - ssh pigeon@146.185.167.197 'sh /pomodoro.cc/opt/docker.clean.sh || true'
+      - mkdir -p ~/docker;
+      - docker save christianfei/pomodoro-api > ~/docker/pomodoro-api.tar
+      - docker save christianfei/pomodoro-api > ~/docker/pomodoro-app.tar
