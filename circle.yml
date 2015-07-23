@@ -11,15 +11,14 @@ dependencies:
   override:
     - rm -rf ~/docker
     - npm install
-    - (cd app && npm install)
-    - (cd app && ./node_modules/gulp/bin/gulp.js)
+    - (cd app && npm install && ./node_modules/gulp/bin/gulp.js)
     - (cd api && npm install)
     - cp credentials.template.json credentials.json
     - sh opt/docker.build.sh
 
 test:
   override:
-    - (cd app && ./node_modules/gulp/bin/gulp.js test)
+    - (cd app && npm test)
     - sh api/opt/docker.test.sh
     - unzip ssl.zip -d .
     - sh opt/docker.run.sh DEV
