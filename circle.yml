@@ -14,15 +14,15 @@ dependencies:
     - (cd app && npm install && ./node_modules/gulp/bin/gulp.js)
     - (cd api && npm install)
     - cp credentials.template.json credentials.json
-    - sh opt/docker.build.sh
+    - opt/docker.build
 
 test:
   override:
     - (cd app && npm test)
-    - sh api/opt/docker.test.sh
+    - api/opt/docker.test
     - unzip ssl.zip -d .
-    - sh opt/docker.run.sh DEV
-    - sh opt/docker.seed.sh
+    - opt/docker.run DEV
+    - opt/docker.seed
     - (cd app && npm run e2e)
 
 deployment:
@@ -30,12 +30,12 @@ deployment:
     branch: master
     commands:
       - (cd app && PRODUCTION=true ./node_modules/gulp/bin/gulp.js)
-      - sh opt/docker.build.sh
+      - opt/docker.build
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push christianfei/pomodoro-app
       - docker push christianfei/pomodoro-api
       - ssh pigeon@146.185.167.197 'cd /pomodoro.cc && git pull origin master'
-      - ssh pigeon@146.185.167.197 'sh /pomodoro.cc/opt/docker.pull.sh'
-      - ssh pigeon@146.185.167.197 'sh /pomodoro.cc/opt/docker.rm.sh'
-      - ssh pigeon@146.185.167.197 'sh /pomodoro.cc/opt/docker.run.sh'
-      - ssh pigeon@146.185.167.197 'sh /pomodoro.cc/opt/docker.clean.sh || true'
+      - ssh pigeon@146.185.167.197 '/pomodoro.cc/opt/docker.pull'
+      - ssh pigeon@146.185.167.197 '/pomodoro.cc/opt/docker.rm'
+      - ssh pigeon@146.185.167.197 '/pomodoro.cc/opt/docker.run'
+      - ssh pigeon@146.185.167.197 '/pomodoro.cc/opt/docker.clean || true'

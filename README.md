@@ -48,13 +48,13 @@ The vagrant box keep the following docker containers up and running:
 
 To rebuild the infrastructure run (from `/pomodoro.cc` inside vagrant)
 
-- `sh opt/docker.build.sh`
-- `sh opt/docker.rm.sh`
-- `sh opt/docker.run.sh`
+- `opt/docker.restart`
 
 or
 
-- `sh opt/docker.build.sh && sh opt/docker.rm.sh && sh opt/docker.run.sh`
+- `opt/docker.build`
+- `opt/docker.rm`
+- `opt/docker.run`
 
 ##### Problems with Docker and Vagrant?
 
@@ -98,11 +98,11 @@ You have to install the safari webdriver extension from [here](http://selenium-r
 You can run the tests with: (inside vagrant)
 
 ```
-sh /pomodoro.cc/api/opt/docker.test.sh
+/pomodoro.cc/api/opt/docker.test
 ```
 
 ###### seed the db
 
 ```
-sh /pomodoro.cc/opt/docker.seed.sh
+sh /pomodoro.cc/opt/docker.seed
 ```

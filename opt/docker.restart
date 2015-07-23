@@ -10,6 +10,6 @@ if [ "$1" = "DEV" ];then
   ENV="DEV"
 fi
 
-sh $PROJECT_DIR/opt/docker.build.sh
-sh $PROJECT_DIR/opt/docker.rm.sh
-sh $PROJECT_DIR/opt/docker.run.sh $ENV
+$PROJECT_DIR/opt/docker.build
+$PROJECT_DIR/opt/docker.rm
+$PROJECT_DIR/opt/docker.run $ENV
