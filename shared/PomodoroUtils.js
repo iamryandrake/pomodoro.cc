@@ -1,5 +1,6 @@
 var moment = require('moment')
 module.exports = {
+  isPomodoro: isPomodoro,
   calculateDuration: calculateDuration,
   calculateDurationInMinutes: calculateDurationInMinutes,
   calculateDurationInHours: calculateDurationInHours,
@@ -21,6 +22,10 @@ function calculateDuration(pomodoro){
   return 0
 }
 
+
+function isPomodoro(pomodoro){
+  return pomodoro && /pomodoro/.test(pomodoro.type)
+}
 
 function calculateDurationInMinutes(pomodoro){
   return parseInt(calculateDuration(pomodoro)/60, 10)
