@@ -31,7 +31,7 @@ function calculateDurationInMinutes(pomodoro){
   return parseInt(calculateDuration(pomodoro)/60, 10)
 }
 function calculateDurationInHours(pomodoro){
-  return trimDecimals(calculateDurationInMinutes(pomodoro)/60, 1)
+  return trimDecimals(calculateDurationInMinutes(pomodoro)/60, 2)
 }
 
 function minutesToDuration(minutes){
