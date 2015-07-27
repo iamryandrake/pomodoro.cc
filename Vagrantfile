@@ -21,9 +21,7 @@ Vagrant.configure('2') do |config|
     d.pull_images "mongo"
   end
 
-  config.vm.provision "shell", run: "always", path: "opt/docker.rm"
-  config.vm.provision "shell", run: "always", path: "opt/docker.build"
-  config.vm.provision "shell", run: "always", path: "opt/docker.run"
+  config.vm.provision "shell", run: "always", path: "opt/docker.restart"
 
   config.vm.provision "shell",
     inline: "echo 'cd /pomodoro.cc' >> /home/vagrant/.bashrc"
