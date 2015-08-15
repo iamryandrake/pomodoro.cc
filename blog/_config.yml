@@ -9,14 +9,14 @@ highlighter: pygments
 
 paginate: 20
 baseurl: /blog
-domain_name: 'http://pomodoro.cc/blog'
+domain_name: 'https://pomodoro.cc/blog'
 google_analytics: 'UA-54555614-3'
 disqus_shortname: 'christianfei'
 
 # Details for the RSS feed generator
-url:            'httpc://pomodoro.cc/blog'
+url:            'https://pomodoro.cc/blog'
 author:         'Pomodoro.cc Tech Blog'
-authorTwitter:  'christian_fei'
+authorTwitter:  'pomodoro_cc'
 
 permalink:       /:year/:title/
 
