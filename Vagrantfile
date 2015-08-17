@@ -4,7 +4,7 @@ Vagrant.configure('2') do |config|
   config.ssh.shell = 'bash -c \'BASH_ENV=/etc/profile exec bash\''
 
   config.vm.provider "virtualbox" do |vb|
-    vb.customize ["modifyvm", :id, "--memory", 512]
+    vb.customize ["modifyvm", :id, "--memory", 1024]
     vb.customize ["modifyvm", :id, "--cpus", 1]
   end
 
@@ -21,7 +21,7 @@ Vagrant.configure('2') do |config|
     d.pull_images "mongo"
   end
 
-  config.vm.provision "shell", run: "always", path: "opt/docker.restart"
+  config.vm.provision "shell", run: "always", path: "opt/docker.restart", :args => "DEV"
 
   config.vm.provision "shell",
     inline: "echo 'cd /pomodoro.cc' >> /home/vagrant/.bashrc"
