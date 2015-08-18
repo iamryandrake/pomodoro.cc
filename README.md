@@ -16,11 +16,13 @@ With the help of insightful statistics, you'll be able to better understand how 
 
 # Setup
 
+```
+chmod +x opt/*
+opt/bootstrap
+```
 
-Setup a `credentials.json` starting from `credentials.template.json` and fill in your information.
+Fill in your information in the `credentials.json` if you want to be able to login in `http://pomodoro.dev`
 You'll need to create an app for github and twitter. (If you don't want to provide them, it's fine, authentication won't work, but you need at least to create this file)
-
------
 
 Add an entry in your `/etc/hosts`:
 
@@ -28,10 +30,9 @@ Add an entry in your `/etc/hosts`:
 192.168.11.2    pomodoro.dev
 ```
 
-Execute
+Boot up the vagrant with:
 
 ```
-make bootstrap
 vagrant up
 ```
 
@@ -62,9 +63,7 @@ Please refer to [this issue](https://github.com/mitchellh/vagrant/issues/5748)
 
 ##### [SSL certificate](https://devcenter.heroku.com/articles/ssl-certificate-self) and credentials
 
-Execute `unzip ssl.zip` or
-
-generate a self signed certificate and put the generated files under the `ssl` directory with
+You can override the self-signed certificate with (put the files in the `ssl` directory) :
 
 ```
 openssl genrsa -des3 -passout pass:x -out pomodoro.cc.pass.key 2048
@@ -93,6 +92,7 @@ You have to install the correct chrome.webdriver and put it in `bin/`. You can d
 
 You have to install the safari webdriver extension from [here](http://selenium-release.storage.googleapis.com/index.html?path=2.45/)
 
+
 #### Api
 
 You can run the tests with: (inside vagrant)
@@ -101,8 +101,9 @@ You can run the tests with: (inside vagrant)
 /pomodoro.cc/api/opt/docker.test
 ```
 
+
 ###### seed the db
 
 ```
-sh /pomodoro.cc/opt/docker.seed
+/pomodoro.cc/opt/docker.seed
 ```

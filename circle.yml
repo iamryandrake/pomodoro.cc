@@ -9,18 +9,14 @@ dependencies:
     - "app/node_modules"
     - "api/node_modules"
   override:
-    - rm -rf ~/docker
-    - npm install
-    - (cd app && npm install && ./node_modules/gulp/bin/gulp.js)
-    - (cd api && npm install)
-    - cp credentials.template.json credentials.json
+    - chmod +x opt/*
+    - opt/bootstrap
     - opt/docker.build
 
 test:
   override:
     - (cd app && npm test)
     - api/opt/docker.test
-    - unzip ssl.zip -d .
     - opt/docker.run DEV
     - opt/docker.seed
     - (cd app && npm run e2e)
