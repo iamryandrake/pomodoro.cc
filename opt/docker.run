@@ -91,18 +91,15 @@ fi
 if [ -z "$(id_for_container 'pomodoro-app')" ]; then
   echo "\n\n"
   echo "----> STARTING 'pomodoro-app'"
+  VOLUME=""
   if [ "$ENV" = "DEV" ]; then
-    docker run --name pomodoro-app \
-      --restart=always \
-      --detach=true \
-      --volume $PROJECT_DIR/app/www:/var/www/pomodoro.cc/ \
-      christianfei/pomodoro-app
-  else
-    docker run --name pomodoro-app \
-      --restart=always \
-      --detach=true \
-      christianfei/pomodoro-app
+    VOLUME="--volume $PROJECT_DIR/app/www:/var/www/pomodoro.cc/"
   fi
+  docker run --name pomodoro-app \
+    --restart=always \
+    --detach=true \
+    $VOLUME \
+    christianfei/pomodoro-app
 fi
 
 
