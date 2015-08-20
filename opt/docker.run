@@ -12,6 +12,12 @@ if [ "$1" = "DEV" ];then
 fi
 
 echo "\n\n\n"
+echo "=============================="
+echo "sourcing environment variables"
+echo "=============================="
+source $PROJECT_DIR/opt/docker.env
+
+echo "\n\n\n"
 echo "========="
 echo "|ENV=$ENV|"
 echo "========="
@@ -98,6 +104,7 @@ if [ -z "$(id_for_container 'pomodoro-app')" ]; then
   docker run --name pomodoro-app \
     --restart=always \
     --detach=true \
+    --env PRERENDER_TOKEN="$PRERENDER_TOKEN" \
     $VOLUME \
     christianfei/pomodoro-app
 fi

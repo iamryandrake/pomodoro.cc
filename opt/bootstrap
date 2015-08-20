@@ -12,5 +12,8 @@ echo "--> installing api dependencies\n\n\n"
 echo "--> creating credentials.json"
 cp credentials.template.json credentials.json
 
+echo "--> creating opt/docker.env"
+cp opt/docker.template.env opt/docker.env
+
 echo "--> setting up self-signed certificate"
 unzip ssl.zip -d .
