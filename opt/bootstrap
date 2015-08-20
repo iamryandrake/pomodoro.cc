@@ -4,10 +4,13 @@ echo "--> installing global dependencies\n\n\n"
 npm install
 
 echo "--> installing app dependencies\n\n\n"
-(cd app; npm install; NODE_PATH=node_modules ./node_modules/gulp/bin/gulp.js)
+(cd app; npm install)
 
 echo "--> installing api dependencies\n\n\n"
 (cd api; npm install)
+
+echo "--> building app"
+(cd app; NODE_PATH=node_modules ./node_modules/gulp/bin/gulp.js)
 
 echo "--> creating credentials.json"
 cp credentials.template.json credentials.json
