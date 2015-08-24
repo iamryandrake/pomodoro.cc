@@ -69,7 +69,8 @@ if [ -z "$(id_for_container 'pomodoro-blog')" ]; then
     --restart=always \
     --detach=true \
     --volume $PROJECT_DIR/blog:/srv/jekyll \
-    jekyll/stable
+    jekyll/stable \
+    jekyll s
 fi
 
 
