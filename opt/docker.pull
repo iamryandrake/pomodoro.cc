@@ -1,4 +1,8 @@
 #!/bin/bash
 
-docker pull christianfei/pomodoro-app:latest
-docker pull christianfei/pomodoro-api:latest
+docker pull christianfei/pomodoro-app
+docker pull christianfei/pomodoro-api
+docker pull redis
+docker pull mongo
+docker pull jekyll/stable
+docker pull nginx:1.9.1
