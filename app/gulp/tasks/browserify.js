@@ -4,6 +4,7 @@ var gulp = require('gulp')
   , gulpif = require('gulp-if')
   , browserify = require('browserify')
   , reactify = require('reactify')
+  , browserifyShim = require('browserify-shim')
   , watchify = require('watchify')
   , source = require('vinyl-source-stream')
   , buffer = require('vinyl-buffer')
@@ -19,8 +20,9 @@ var browserifyStream = browserify({
       // watchify requires these options
       cache: {}, packageCache: {}, fullPaths: true
     })
-// browserifyStream.external('react')
+browserifyStream.external('react')
 browserifyStream.transform(reactify)
+browserifyStream.transform(browserifyShim)
 
 
 function task(_dev){
