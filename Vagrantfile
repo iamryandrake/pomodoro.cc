@@ -19,6 +19,9 @@ Vagrant.configure('2') do |config|
   config.vm.provision "docker" do |d|
     d.pull_images "redis"
     d.pull_images "mongo"
+    d.pull_images "nginx:1.9.1"
+    d.pull_images "jekyll/stable"
+    d.pull_images "msaraiva/elixir"
   end
 
   config.vm.provision "shell", run: "always", path: "opt/docker.restart", :args => "DEV"
