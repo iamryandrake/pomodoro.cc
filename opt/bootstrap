@@ -10,7 +10,7 @@ echo "--> installing api dependencies\n\n\n"
 (cd api; npm install)
 
 echo "--> building app"
-(cd app; NODE_PATH=node_modules ./node_modules/gulp/bin/gulp.js)
+(cd app; ./node_modules/gulp/bin/gulp.js)
 
 echo "--> creating credentials.json"
 cp credentials.template.json credentials.json
