@@ -1,22 +1,33 @@
 #!/bin/sh
 
+OVERALL_EXIT_CODE=0
+
 echo "--> installing global dependencies\n\n\n"
 npm install
+OVERALL_EXIT_CODE=$OVERALL_EXIT_CODE + $?
 
 echo "--> installing app dependencies\n\n\n"
 (cd app; npm install)
+OVERALL_EXIT_CODE=$OVERALL_EXIT_CODE + $?
 
 echo "--> installing api dependencies\n\n\n"
 (cd api; npm install)
+OVERALL_EXIT_CODE=$OVERALL_EXIT_CODE + $?
 
 echo "--> building app"
 (cd app; ./node_modules/gulp/bin/gulp.js)
+OVERALL_EXIT_CODE=$OVERALL_EXIT_CODE + $?
 
 echo "--> creating credentials.json"
 cp credentials.template.json credentials.json
+OVERALL_EXIT_CODE=$OVERALL_EXIT_CODE + $?
 
 echo "--> creating opt/docker.env"
 cp opt/docker.template.env opt/docker.env
+OVERALL_EXIT_CODE=$OVERALL_EXIT_CODE + $?
 
 echo "--> setting up self-signed certificate"
 unzip ssl.zip -d .
+OVERALL_EXIT_CODE=$OVERALL_EXIT_CODE + $?
+
+exit $OVERALL_EXIT_CODE
