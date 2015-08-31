@@ -18,13 +18,16 @@ To start, let`s define what a fake user looks like:
 
 For a social login session with Twitter or Github, the user look like this (you`ll need to change it based on your provider)
 
-```
+<pre>
+
 var fakeUser = {"id":2662706,"avatar":"https://avatars.githubusercontent.com/u/2662706?v=3","username":"christian-fei","_id":"fake"}
-```
+</pre>
+
 
 The middleware will assign the fake user to the session, while the actual route will initialize the process:
 
-```
+<pre>
+
 function middleware(req,res,next){
   if( req && req.session && req.session.user_tmp ){
     req.user = req.session.user_tmp
@@ -39,14 +42,17 @@ function route(req,res){
   req.session.user_tmp = fakeUser
   res.redirect('/')
 }
-```
+</pre>
+
 
 
 And now finally to tie things up, bind the functions to the middleware and route (only in development or test):
 
-```
+<pre>
+
 if( process.env.NODE_ENV==='DEV' || process.env.NODE_ENV==='test' ){
   router.use(middleware)
   router.get('/auth/fake', route)
 }
-```
+</pre>
+
