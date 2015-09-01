@@ -1,6 +1,6 @@
 ---
-title:  "The numbers"
-date:   2015-07-11 14:00
+title:       The numbers
+date:        2015-07-11 14:00
 description: A little sneak peek of pomodoro.cc's numbers.
 ---
 

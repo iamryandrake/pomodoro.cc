@@ -1,7 +1,7 @@
 ---
-title: "How to fake any authentication strategy with Passport.js"
-date: 2015-08-31
-layout: post
+title:        How to fake any authentication strategy with Passport.js
+date:         2015-08-31
+description:  Simple, unobtrusive fake authentication with Express and Passport.js
 ---
 
 Oftentimes to enable end-to-end testing with authentication you will setup a specific route to fake an authenticated user session.
