@@ -41,7 +41,9 @@ id_for_container(){
 
 
 if [ -z "$(id_for_container 'pomodoro-api-sessions')" ]; then
-  echo "\n\n"
+  echo ""
+  echo ""
+  echo ""
   echo "----> STARTING 'pomodoro-api-sessions'"
   docker run --name pomodoro-api-sessions \
     --restart=always \
@@ -54,7 +56,9 @@ fi
 
 
 if [ -z "$(id_for_container 'pomodoro-api-db')" ]; then
-  echo "\n\n"
+  echo ""
+  echo ""
+  echo ""
   echo "----> STARTING 'pomodoro-api-db'"
   docker run --name pomodoro-api-db \
     --restart=always \
@@ -69,7 +73,9 @@ fi
 
 
 if [ -z "$(id_for_container 'pomodoro-blog')" ]; then
-  echo "\n\n"
+  echo ""
+  echo ""
+  echo ""
   echo "----> STARTING 'pomodoro-blog'"
   docker run --name pomodoro-blog \
     --restart=always \
@@ -84,7 +90,9 @@ fi
 
 
 if [ -z "$(id_for_container 'pomodoro-api')" ]; then
-  echo "\n\n"
+  echo ""
+  echo ""
+  echo ""
   echo "----> STARTING 'pomodoro-api'"
   docker run --name pomodoro-api \
     --restart=always \
@@ -101,7 +109,9 @@ fi
 
 
 if [ -z "$(id_for_container 'pomodoro-ws')" ]; then
-  echo "\n\n"
+  echo ""
+  echo ""
+  echo ""
   echo "----> STARTING 'pomodoro-ws'"
   docker run --name pomodoro-ws \
     --restart=always \
@@ -116,7 +126,9 @@ fi
 
 
 if [ -z "$(id_for_container 'pomodoro-app')" ]; then
-  echo "\n\n"
+  echo ""
+  echo ""
+  echo ""
   echo "----> STARTING 'pomodoro-app'"
   VOLUME=""
   if [ "$ENV" = "DEV" ]; then
@@ -135,7 +147,9 @@ fi
 
 
 if [ -z "$(id_for_container 'pomodoro-main')" ]; then
-  echo "\n\n"
+  echo ""
+  echo ""
+  echo ""
   echo "----> STARTING 'pomodoro-main'"
   docker run --name pomodoro-main \
     --restart=always \
@@ -154,6 +168,8 @@ fi
 
 
 
+echo ""
+echo ""
 echo ""
 echo ""
 echo ""
