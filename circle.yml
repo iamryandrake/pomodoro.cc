@@ -15,8 +15,9 @@ dependencies:
 
 test:
   override:
-    - (cd app && npm test)
-    - api/opt/docker.test
+    - app/opt/test
+    - api/opt/test
+    - ws/opt/test
     - opt/docker.run DEV
     - opt/docker.seed
     - (cd app && npm run e2e)
