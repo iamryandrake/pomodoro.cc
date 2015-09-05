@@ -9,7 +9,9 @@ fi
 
 build_container(){
   NAME=$1
-  echo "\n\n"
+  echo ""
+  echo ""
+  echo ""
   echo "----> BUILDING pomodoro-$NAME"
   docker build -t christianfei/pomodoro-$NAME $PROJECT_DIR/$NAME
 }
@@ -19,3 +21,4 @@ build_container(){
 
 build_container 'app'
 build_container 'api'
+build_container 'ws'
