@@ -1,3 +1,3 @@
 defmodule Ws.Router do
-  use Ws.Web, :router
+  use Phoenix.Router
 end

@@ -1,7 +1,7 @@
 defmodule Ws.Socket do
   use Phoenix.Socket
 
-  channel "dummy:*", Ws.DummyChannel
+  channel "global:*", Ws.GlobalChannel
 
   transport :websocket, Phoenix.Transports.WebSocket
 
