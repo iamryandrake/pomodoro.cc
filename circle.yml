@@ -26,7 +26,7 @@ deployment:
   production:
     branch: master
     commands:
-      - PRODUCTION=true app/opt/test.build
+      - PRODUCTION=true app/opt/build
       - opt/docker.build
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push christianfei/pomodoro-app
