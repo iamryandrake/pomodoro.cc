@@ -20,7 +20,7 @@ test:
     - ws/opt/test
     - opt/docker.run DEV
     - opt/docker.seed
-    - (cd app && npm run e2e)
+    - app/opt/test.e2e
 
 deployment:
   production:
