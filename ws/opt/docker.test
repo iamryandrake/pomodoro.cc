@@ -1,0 +1,20 @@
+#!/bin/bash
+
+id_for_container(){
+  CONTAINER="$1\s*$"
+  CONTAINER_ID="$(docker ps -a | grep "$CONTAINER" | awk '{print $1}')"
+  echo $CONTAINER_ID
+}
+
+if [ ! -z "$(id_for_container 'pomodoro-ws-test')" ]; then
+  docker rm -f pomodoro-ws-test
+fi
+
+docker run -it \
+  --name pomodoro-ws-test \
+  --env MIX_ENV="test" \
+  christianfei/pomodoro-ws sh -c 'mix test'
+
+TEST_RESULT_CODE=$?
+
+exit $TEST_RESULT_CODE
