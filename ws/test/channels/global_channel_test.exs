@@ -6,23 +6,14 @@ defmodule Ws.GlobalChannelTest do
   setup do
     {:ok, _, socket} =
       socket("user_id", %{some: :assign})
-      |> subscribe_and_join(GlobalChannel, "global:lobby")
+      |> subscribe_and_join(GlobalChannel, "global:pomodoro_event")
 
     {:ok, socket: socket}
   end
 
-  test "ping replies with status ok", %{socket: socket} do
-    ref = push socket, "ping", %{"hello" => "there"}
-    assert_reply ref, :ok, %{"hello" => "there"}
+  test "shout broadcasts to global:pomodoro_event", %{socket: socket} do
+    push socket, "pomodoro_start", %{"hello" => "all"}
+    assert_broadcast "pomodoro_start", %{"hello" => "all"}
   end
 
-  test "shout broadcasts to global:lobby", %{socket: socket} do
-    push socket, "shout", %{"hello" => "all"}
-    assert_broadcast "shout", %{"hello" => "all"}
-  end
-
-  test "broadcasts are pushed to the client", %{socket: socket} do
-    broadcast_from! socket, "broadcast", %{"some" => "data"}
-    assert_push "broadcast", %{"some" => "data"}
-  end
 end
