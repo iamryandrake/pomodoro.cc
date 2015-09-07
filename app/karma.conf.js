@@ -3,7 +3,7 @@ module.exports = function(config) {
     basePath: '',
 
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['browserify','mocha'],
+    frameworks: ['browserify','mocha','chai','phantomjs-shim'],
 
     files: [
       'src/**/*.test.js'
@@ -19,8 +19,9 @@ module.exports = function(config) {
 
     browserify: {
       debug: true,
-      extensions: ['.js']
-    },
+      extensions: ['.js'],
+      transform: ["reactify"]
+   },
 
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: ['mocha'],

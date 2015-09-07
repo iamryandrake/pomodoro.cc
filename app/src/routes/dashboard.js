@@ -1,5 +1,6 @@
 var React = require('react')
   , PomodoroTimer = require('../components/PomodoroTimer')
+  , TodoList = require('../components/TodoList')
   , LoginLogout = require('../components/LoginLogout')
   , SoundSettings = require('../components/SoundSettings')
   , PomodoroEventHandler = require('../modules/PomodoroEventHandler')
@@ -19,11 +20,21 @@ var Dashboard = React.createClass({
     if( remaining <= 0 && pomodoroData ){
       PomodoroEventHandler('end', pomodoroData.minutes, pomodoroData.type)
     }
+    var items = []
+    try {
+      var localStorageItems = localStorage.getItem('todoList')
+
+      var parsedItems = JSON.parse(localStorageItems)
+      if( parsedItems instanceof Array ){
+        items = parsedItems
+      }
+    }catch(e){}
     return  <div>
               <header className="prominent-header">
               </header>
               <div className="content limit extended small breath">
                 <div className="limit">
+                  <TodoList items={items} onAdd={this._todoListOnAdd} onChange={this._todoListOnChange}/>
                   <PomodoroTimer data={pomodoroData} notify={PomodoroEventHandler}/>
                   <SoundSettings/>
                   <div className="limit breath">
@@ -32,5 +43,11 @@ var Dashboard = React.createClass({
                 </div>
               </div>
             </div>
+  },
+  _todoListOnAdd: function(){
+    // debugger
+  },
+  _todoListOnChange: function(){
+    // debugger
   }
 })
