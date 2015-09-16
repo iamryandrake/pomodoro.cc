@@ -8,6 +8,7 @@ defmodule Ws.GlobalChannel do
 
   def handle_in("pomodoro_start", payload, socket) do
     broadcast socket, "pomodoro_start", payload
+    IO.puts "-- handling pomodoro_start"
     {:noreply, socket}
   end
 end
