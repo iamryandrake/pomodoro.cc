@@ -5,6 +5,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get -y install apt-transport-https && \
     apt-get update -q && \
     apt-get -y install git inotify-tools && \
+    apt-get -y install erlang-dev && \
     apt-get clean -y && \
     rm -rf /var/cache/apt/*
 
