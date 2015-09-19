@@ -33,6 +33,7 @@ defmodule Ws.Mixfile do
      {:phoenix_live_reload, "~> 1.0.1", only: :dev},
      {:cowboy, "~> 1.0.3 "},
      {:httpoison, "~> 0.7.3"},
-     {:poison, "~> 1.5.0"}]
+     {:poison, "~> 1.5.0"},
+     {:mock, "~> 0.1.1"}]
   end
 end
