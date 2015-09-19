@@ -12,8 +12,9 @@ defmodule Ws.GlobalChannelTest do
   end
 
   test "shout broadcasts to global:pomodoro_event", %{socket: socket} do
+    assigns = socket.assigns
     push socket, "pomodoro_start", %{"hello" => "all"}
-    assert_broadcast "pomodoro_start", %{"hello" => "all"}
+    assert_broadcast "pomodoro_start", assigns
   end
 
 end
