@@ -55,10 +55,8 @@ defmodule Ws.Transports.WebSocketIp do
   end
 
   defp conn_ip(conn) do
-    IO.inspect conn.req_headers
     ip_header = List.keyfind(conn.req_headers, "x-real-ip", 0)
-    {_, ip} = ip_header
-    ip
+    elem(ip_header, 1)
   end
 
   defp ip_to_geo(ip) do
