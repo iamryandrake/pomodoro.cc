@@ -3,7 +3,8 @@ defmodule Ws.Socket do
 
   channel "global:*", Ws.GlobalChannel
 
-  transport :websocket, Phoenix.Transports.WebSocket
+  # transport :websocket, Phoenix.Transports.WebSocket
+  transport :websocket, Ws.Transports.WebSocketIp
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
@@ -17,7 +18,6 @@ defmodule Ws.Socket do
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
   def connect(_params, socket) do
-    IO.puts "-- ws connection established"
     {:ok, socket}
   end
 
