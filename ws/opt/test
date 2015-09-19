@@ -1,5 +1,11 @@
 #!/bin/bash
 
+SCRIPT_DIR=$(dirname `readlink -f $0`)
+PROJECT_DIR=$(readlink -f $SCRIPT_DIR/../../)
+if [ "$PROJECT_DIR" = "/" ]; then
+  PROJECT_DIR="/pomodoro.cc"
+fi
+
 id_for_container(){
   CONTAINER="$1\s*$"
   CONTAINER_ID="$(docker ps -a | grep "$CONTAINER" | awk '{print $1}')"
@@ -13,7 +19,8 @@ fi
 docker run -it \
   --name pomodoro-ws-test \
   --env MIX_ENV="test" \
-  christianfei/pomodoro-ws sh -c 'mix test'
+  -v $PROJECT_DIR/ws:/usr/src/app \
+  christianfei/pomodoro-ws sh -c 'mix do clean, deps.get, compile, test'
 
 TEST_RESULT_CODE=$?
 
