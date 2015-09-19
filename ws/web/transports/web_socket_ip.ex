@@ -37,7 +37,13 @@ defmodule Ws.Transports.WebSocketIp do
 
         case Transport.connect(endpoint, handler, transport, __MODULE__, serializer, params) do
           {:ok, socket} ->
-            socket = assign_ip_to(socket, conn)
+            ip = conn_ip(conn)
+
+            socket = Phoenix.Socket.assign(socket, :ip, ip)
+            socket = ip_to_geo(ip)
+              |> decode_geo
+              |> assign_location_to(socket)
+
             {:ok, conn, {__MODULE__, {socket, opts}}}
           :error ->
             send_resp(conn, 403, "")
@@ -48,10 +54,27 @@ defmodule Ws.Transports.WebSocketIp do
     end
   end
 
-  defp assign_ip_to(socket, conn) do
+  defp conn_ip(conn) do
+    IO.inspect conn.req_headers
     ip_header = List.keyfind(conn.req_headers, "x-real-ip", 0)
     {_, ip} = ip_header
-    Phoenix.Socket.assign(socket, :ip, ip)
+    ip
+  end
+
+  defp ip_to_geo(ip) do
+    HTTPoison.get!("https://freegeoip.net/json/#{ip}")
+  end
+
+  defp decode_geo(response) do
+    Poison.decode(response.body)
+  end
+
+  defp assign_location_to({:ok, body}, socket) do
+    latitude = Dict.get(body, "latitude", "")
+    longitude = Dict.get(body, "longitude", "")
+    socket = Phoenix.Socket.assign(socket, :latitude, latitude)
+    socket = Phoenix.Socket.assign(socket, :longitude, longitude)
+    socket
   end
 
   def init(conn, _) do
