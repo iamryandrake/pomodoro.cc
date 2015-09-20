@@ -16,6 +16,9 @@ build_container(){
   docker build -t christianfei/pomodoro-$NAME $PROJECT_DIR/$NAME
 }
 
+
+
+
 build_container 'app'
 build_container 'api'
 build_container 'ws'
