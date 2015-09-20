@@ -22,10 +22,6 @@ echo "--> creating credentials.json"
 cp credentials.template.json credentials.json
 OVERALL_EXIT_CODE=$OVERALL_EXIT_CODE + $?
 
-echo "--> creating opt/docker.env"
-cp opt/docker.template.env opt/docker.env
-OVERALL_EXIT_CODE=$OVERALL_EXIT_CODE + $?
-
 echo "--> setting up self-signed certificate"
 unzip ssl.zip -d .
 OVERALL_EXIT_CODE=$OVERALL_EXIT_CODE + $?

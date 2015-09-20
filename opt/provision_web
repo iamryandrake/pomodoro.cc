@@ -1,0 +1,18 @@
+#!/bin/bash
+
+sudo apt-get update
+sudo apt-get install -y curl wget git build-essential
+curl --silent --location https://deb.nodesource.com/setup_4.x | sudo bash -
+wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo dpkg -i erlang-solutions_1.0_all.deb
+sudo apt-get update
+
+sudo apt-get install -y nginx
+sudo apt-get install -y nodejs
+# elixir/erlang
+sudo apt-get install -y git inotify-tools
+sudo apt-get install -y erlang-dev erlang-ssl erlang-inets
+sudo apt-get install -y erlang-edoc erlang-eunit erlang-tools erlang-common-test
+sudo apt-get install -y elixir
+
+# sudo apt-get clean
+# rm -rf /var/cache/apt/*
