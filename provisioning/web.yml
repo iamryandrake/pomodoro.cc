@@ -38,6 +38,16 @@
         - erlang-common-test
         - elixir
 
+    - name: remove default nginx configuration
+      file: path=/etc/nginx/sites-available/default state=absent
+      sudo: yes
+      notify: restart nginx
+
+    - name: configure main nginx proxy
+      copy: src=../main/etc/nginx/sites-available/default dest=/etc/nginx/sites-available/default group=www-data
+      sudo: yes
+      notify: restart nginx
+
     - name: ensure fail2ban is running
       sudo: yes
       action: service name=fail2ban state=restarted enabled=yes

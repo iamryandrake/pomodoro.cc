@@ -9,6 +9,7 @@ Vagrant.configure('2') do |config|
     web.vm.provision "shell", path: "opt/env"
     web.vm.provision :ansible do |ansible|
       ansible.playbook = "provisioning/web.yml"
+      # ansible.verbose = true
     end
     web.vm.provider "virtualbox" do |vb|
       vb.customize ["modifyvm", :id, "--memory", 1024]
