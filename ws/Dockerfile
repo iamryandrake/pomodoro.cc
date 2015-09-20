@@ -17,7 +17,7 @@ WORKDIR /usr/src/app
 
 RUN mix deps.get
 
-RUN mix deps.compile
+# RUN mix deps.compile
 
 COPY . /usr/src/app
 
