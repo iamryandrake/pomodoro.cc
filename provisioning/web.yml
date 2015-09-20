@@ -1,13 +1,7 @@
 - hosts: web
   tasks:
-    - name: download node ppa
-      get_url: url=https://deb.nodesource.com/setup_4.x dest=/tmp/node_ppa
-
     - name: download erlang ppa
       get_url: url=https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb dest=/tmp/erlang_ppa
-
-    - name: add node ppa
-      shell: sudo bash /tmp/node_ppa
 
     - name: add erlang ppa
       shell: sudo dpkg -i /tmp/erlang_ppa
@@ -23,9 +17,10 @@
         - build-essential
         - git
         - tree
-        - nginx
         - curl
         - wget
+        - fail2ban
+        - ufw
 
     - name: install web packages
       apt: pkg={{ item }} state=latest
@@ -42,3 +37,38 @@
         - erlang-tools
         - erlang-common-test
         - elixir
+
+    - name: ensure fail2ban is running
+      sudo: yes
+      action: service name=fail2ban state=restarted enabled=yes
+
+    - name: forbid SSH root login
+      sudo: yes
+      lineinfile: destfile=/etc/ssh/sshd_config regexp="^PermitRootLogin" line="PermitRootLogin no" state=present
+      notify:
+        - restart ssh
+
+    - name: reset firewall
+      sudo: yes
+      action: shell ufw --force reset
+
+    - name: allow firewall authorized ports
+      sudo: yes
+      action: shell ufw allow {{ item }}
+      with_items:
+        - 22
+        - 80
+        - 443
+
+    - name: enable firewall
+      sudo: yes
+      action: shell ufw --force enable
+
+  handlers:
+    - name: restart nginx
+      sudo: yes
+      action: service name=nginx state=restarted enabled=yes
+
+    - name: restart ssh
+      sudo: yes
+      action: service name=ssh state=restarted enabled=yes
