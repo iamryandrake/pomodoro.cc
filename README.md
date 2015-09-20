@@ -36,31 +36,6 @@ Boot up the vagrant with:
 vagrant up
 ```
 
------
-
-The vagrant box keep the following docker containers up and running:
-
-- `pomodoro-main`: nginx container that routes traffic to one of the following containers
-  - `pomodoro-app`: nginx container that serves the static assets
-  - `pomodoro-api`: node container that represents the api
-  - `pomodoro-blog`: node container that contains the blog
-- `redis`: for the sessions shared between the two instances of `pomodoro-api`
-- `mongo`: db for the `pomodoro-api` to save pomodori of registered users
-
-To rebuild the infrastructure run (from `/pomodoro.cc` inside vagrant)
-
-- `opt/docker.restart`
-
-or
-
-- `opt/docker.build`
-- `opt/docker.rm`
-- `opt/docker.run`
-
-##### Problems with Docker and Vagrant?
-
-Please refer to [this issue](https://github.com/mitchellh/vagrant/issues/5748)
-
 ##### [SSL certificate](https://devcenter.heroku.com/articles/ssl-certificate-self) and credentials
 
 You can override the self-signed certificate with (put the files in the `ssl` directory) :
@@ -91,19 +66,3 @@ If you want to run the tests against chrome safari and firefox you can use `npm 
 You have to install the correct chrome.webdriver and put it in `bin/`. You can download it from [here](http://chromedriver.storage.googleapis.com/index.html?path=2.16/)
 
 You have to install the safari webdriver extension from [here](http://selenium-release.storage.googleapis.com/index.html?path=2.45/)
-
-
-#### Api
-
-You can run the tests with: (inside vagrant)
-
-```
-/pomodoro.cc/api/opt/test
-```
-
-
-###### seed the db
-
-```
-/pomodoro.cc/opt/docker.seed
-```

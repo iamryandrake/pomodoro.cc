@@ -9,10 +9,12 @@ sudo apt-get update
 sudo apt-get install -y nginx
 sudo apt-get install -y nodejs
 # elixir/erlang
-sudo apt-get install -y git inotify-tools
-sudo apt-get install -y erlang-dev erlang-ssl erlang-inets
-sudo apt-get install -y erlang-edoc erlang-eunit erlang-tools erlang-common-test
+sudo apt-get install -y inotify-tools
+sudo apt-get install -y erlang-dev erlang-ssl erlang-inets erlang-edoc erlang-eunit erlang-tools erlang-common-test
 sudo apt-get install -y elixir
 
-# sudo apt-get clean
-# rm -rf /var/cache/apt/*
+sudo apt-get clean
+rm -rf /var/cache/apt/*
+
+rm /etc/nginx/sites-enabled/default
+ln -s /pomodoro.cc/main/etc/nginx/nginx.conf /etc/nginx/sites-enabled/default
