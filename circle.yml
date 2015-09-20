@@ -8,7 +8,6 @@ dependencies:
   cache_directories:
     - app/node_modules
     - api/node_modules
-    - ws/deps
   override:
     - opt/bootstrap
     - opt/docker.build
