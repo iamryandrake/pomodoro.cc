@@ -1,0 +1,4 @@
+#!/bin/bash
+
+rm /etc/nginx/sites-enabled/default
+ln -s /pomodoro.cc/main/etc/nginx/nginx.conf /etc/nginx/sites-enabled/default

@@ -1,0 +1,44 @@
+- hosts: web
+  tasks:
+    - name: download node ppa
+      get_url: url=https://deb.nodesource.com/setup_4.x dest=/tmp/node_ppa
+
+    - name: download erlang ppa
+      get_url: url=https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb dest=/tmp/erlang_ppa
+
+    - name: add node ppa
+      shell: sudo bash /tmp/node_ppa
+
+    - name: add erlang ppa
+      shell: sudo dpkg -i /tmp/erlang_ppa
+
+    - name: update apt cache
+      apt: update_cache=yes cache_valid_time=3600
+      sudo: yes
+
+    - name: install system packages
+      apt: pkg={{ item }} state=latest
+      sudo: yes
+      with_items:
+        - build-essential
+        - git
+        - tree
+        - nginx
+        - curl
+        - wget
+
+    - name: install web packages
+      apt: pkg={{ item }} state=latest
+      sudo: yes
+      with_items:
+        - nginx
+        - nodejs
+        - inotify-tools
+        - erlang-dev
+        - erlang-ssl
+        - erlang-inets
+        - erlang-edoc
+        - erlang-eunit
+        - erlang-tools
+        - erlang-common-test
+        - elixir
