@@ -8,9 +8,9 @@ pomodoro.cc
 
 [Pomodoro.cc](http://pomodoro.cc) is an online time tracking tool to plan and review the tasks for the day.
 
-It takes advantage of the guidelines described in the [Pomodoro-technique](http://pomodorotechnique.com) to work more effectively with frequent, mind refreshing breaks.
+It takes advantage of the guidelines described in the [Pomodoro Technique](http://pomodorotechnique.com) to work more effectively with frequent, mind-refreshing breaks.
 
-With the help of insightful statistics, you'll be able to better understand how much you worked on each task and how concentrated you were.
+With the help of insightful statistics, you'll be able to better understand how much time you spent on each task and how focused you were.
 
 -----
 
@@ -21,8 +21,8 @@ chmod +x opt/*
 opt/bootstrap
 ```
 
-Fill in your information in the `credentials.json` if you want to be able to login in `http://pomodoro.dev`
-You'll need to create an app for github and twitter. (If you don't want to provide them, it's fine, authentication won't work, but you need at least to create this file)
+Fill in your information in the `credentials.json` if you want to be able to login in `http://pomodoro.dev`.
+You'll need to create an app for Github and Twitter. (If you don't want to provide them, that's fine. Whilst the authentication won't work, you will still need to create this file.)
 
 Add an entry in your `/etc/hosts`:
 
@@ -47,7 +47,7 @@ The vagrant box keep the following docker containers up and running:
 - `redis`: for the sessions shared between the two instances of `pomodoro-api`
 - `mongo`: db for the `pomodoro-api` to save pomodori of registered users
 
-To rebuild the infrastructure run (from `/pomodoro.cc` inside vagrant)
+To rebuild the infrastructure, run (from `/pomodoro.cc` inside vagrant)
 
 - `opt/docker.restart`
 
@@ -84,13 +84,13 @@ From the `app` folder:
 
 ###### e2e
 
-By default `npm run e2e` runs the tests against firefox.
+By default, `npm run e2e` runs the tests against firefox.
 
-If you want to run the tests against chrome safari and firefox you can use `npm run e2e-cross-browser`
+If you want to run the tests against Chrome, Safari and Firefox, you can use `npm run e2e-cross-browser`.
 
 You have to install the correct chrome.webdriver and put it in `bin/`. You can download it from [here](http://chromedriver.storage.googleapis.com/index.html?path=2.16/)
 
-You have to install the safari webdriver extension from [here](http://selenium-release.storage.googleapis.com/index.html?path=2.45/)
+You have to install the Safari webdriver extension from [here](http://selenium-release.storage.googleapis.com/index.html?path=2.45/)
 
 
 #### Api
@@ -102,7 +102,7 @@ You can run the tests with: (inside vagrant)
 ```
 
 
-###### seed the db
+##### Seed The DB
 
 ```
 /pomodoro.cc/opt/docker.seed
